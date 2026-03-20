@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; MEL 202302</title>
+    <title>Week 12: Logistic Regression — Model Evaluation &#8212; MEL 202302</title>
   
   
   
@@ -62,11 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Week_11/11-1-Schedule_week_11';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Week_12/12-0-Schedule_week_12';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Modelos lineales generalizados" href="11-2-logistic.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../Week_10/10-5-Ejemplo%20seleccion.html" />
+    <link rel="next" title="12-1 Evaluation Metrics for Logistic Regression" href="12-1-Logistic_evaluation.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../Week_11/11-5-Ejemplo_logistic_regularized.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -281,17 +281,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 11</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="11-2-logistic.html">Modelos lineales generalizados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_11/11-2-logistic.html">Modelos lineales generalizados</a></li>
 
 
 
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 12</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-0-Schedule_week_12.html">Week 12: Logistic Regression — Model Evaluation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-1-Logistic_evaluation.html">12-1 Evaluation Metrics for Logistic Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-2-Model_selection_logistic.html">12-2 Model Selection for Logistic Regression</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 12: Logistic Regression — Model Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-1-Logistic_evaluation.html">12-1 Evaluation Metrics for Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-2-Model_selection_logistic.html">12-2 Model Selection for Logistic Regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 13</span></p>
 <ul class="nav bd-sidenav">
@@ -374,7 +374,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_11/11-1-Schedule_week_11.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_12/12-0-Schedule_week_12.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -422,7 +422,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_11/11-1-Schedule_week_11.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_12/12-0-Schedule_week_12.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -452,7 +452,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/Week_11/11-1-Schedule_week_11.ipynb" target="_blank"
+      <li><a href="../_sources/Week_12/12-0-Schedule_week_12.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -536,7 +536,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Week 12: Logistic Regression — Model Evaluation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -545,9 +545,20 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule">Schedule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-1-confusion-matrix">Topic 1 — Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-2-classification-metrics">Topic 2 — Classification Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-3-roc-curve-and-auc">Topic 3 — ROC Curve and AUC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-4-model-calibration">Topic 4 — Model Calibration</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks-for-this-week">Notebooks for This Week</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary-material">Supplementary Material</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#office-hours">Office Hours</a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -558,47 +569,97 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>Week 12: Logistic Regression - Part I</strong></p>
-<p><strong>Objective:</strong>
-This week introduces logistic regression, a technique used when the dependent variable is binary. We will discuss how to estimate and interpret the coefficients of a logistic regression model. The Python implementation will provide practical understanding and hands-on experience.</p>
-<p><strong>Schedule:</strong></p>
-<p><em>Introduction to Logistic Regression</em></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-12-logistic-regression-model-evaluation">
+<h1>Week 12: Logistic Regression — Model Evaluation<a class="headerlink" href="#week-12-logistic-regression-model-evaluation" title="Permalink to this heading">#</a></h1>
+<p><strong>Course:</strong> Models of Statistical Analysis (MAE)<br />
+<strong>Professor:</strong> Alejandra Tabares<br />
+<strong>Universidad de los Andes</strong></p>
+<hr class="docutils" />
+<section id="objective">
+<h2>Objective<a class="headerlink" href="#objective" title="Permalink to this heading">#</a></h2>
+<p>This week focuses on evaluating logistic regression models for classification tasks. After fitting a logistic regression model, it is essential to measure how well the model performs and to compare competing models. We will study the most widely used evaluation metrics in binary classification: the confusion matrix, accuracy, precision, recall, F1-score, the ROC curve, and the AUC statistic. We will also introduce the concept of model calibration.</p>
+</section>
+<hr class="docutils" />
+<section id="schedule">
+<h2>Schedule<a class="headerlink" href="#schedule" title="Permalink to this heading">#</a></h2>
+<section id="topic-1-confusion-matrix">
+<h3>Topic 1 — Confusion Matrix<a class="headerlink" href="#topic-1-confusion-matrix" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Basics of logistic regression</p></li>
-<li><p>Differences and similarities with linear regression</p></li>
-<li><p>Applicability.</p></li>
+<li><p>Definition of true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN)</p></li>
+<li><p>How classification threshold determines the entries of the confusion matrix</p></li>
+<li><p>Visual representation and interpretation</p></li>
 </ul>
-<p><em>Estimation of Coefficients</em></p>
+</section>
+<section id="topic-2-classification-metrics">
+<h3>Topic 2 — Classification Metrics<a class="headerlink" href="#topic-2-classification-metrics" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Method of maximum likelihood</p></li>
+<li><p><strong>Accuracy</strong>: proportion of correctly classified observations</p></li>
+<li><p><strong>Precision</strong>: of all predicted positives, how many are truly positive</p></li>
+<li><p><strong>Recall (Sensitivity)</strong>: of all actual positives, how many are correctly identified</p></li>
+<li><p><strong>F1-Score</strong>: harmonic mean of precision and recall</p></li>
+<li><p><strong>Specificity</strong>: of all actual negatives, how many are correctly identified</p></li>
+<li><p>Trade-offs between precision and recall; choosing the right metric for the problem</p></li>
 </ul>
-<p><em>Model Interpretation</em></p>
+</section>
+<section id="topic-3-roc-curve-and-auc">
+<h3>Topic 3 — ROC Curve and AUC<a class="headerlink" href="#topic-3-roc-curve-and-auc" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Interpretation of coefficients</p></li>
-<li><p>Odds ratios</p></li>
+<li><p>Receiver Operating Characteristic (ROC) curve: sensitivity vs. 1 − specificity across all thresholds</p></li>
+<li><p>Area Under the Curve (AUC) as a threshold-independent measure of discriminative ability</p></li>
+<li><p>Interpreting AUC: random classifier (0.5) vs. perfect classifier (1.0)</p></li>
+<li><p>Comparing two or more models using ROC plots</p></li>
 </ul>
-<p><em>Logistic Regression - Application</em></p>
+</section>
+<section id="topic-4-model-calibration">
+<h3>Topic 4 — Model Calibration<a class="headerlink" href="#topic-4-model-calibration" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Data preparation</p></li>
-<li><p>Model fitting</p></li>
-<li><p>Result interpretation</p></li>
+<li><p>Distinction between discrimination (ROC/AUC) and calibration</p></li>
+<li><p>Calibration curves (reliability diagrams): predicted probability vs. observed frequency</p></li>
+<li><p>Hosmer–Lemeshow goodness-of-fit test</p></li>
+<li><p>Practical implications of poor calibration</p></li>
 </ul>
-<p><strong>Required Readings:</strong>
-<a class="reference external" href="https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681">Chapter 15 from “Applied Statistics and Probability for Engineers” by Douglas C. Montgomery and George C. Runger.</a></p>
-<p><strong>Supplementary Material:</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="notebooks-for-this-week">
+<h2>Notebooks for This Week<a class="headerlink" href="#notebooks-for-this-week" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Notebook</p></th>
+<th class="head"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">12-1-Logistic_evaluation.ipynb</span></code></p></td>
+<td><p>Confusion matrix, classification metrics, ROC curve, AUC</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">12-2-Model_selection_logistic.ipynb</span></code></p></td>
+<td><p>AIC/BIC, stepwise selection, cross-validation, likelihood ratio test</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="required-readings">
+<h2>Required Readings<a class="headerlink" href="#required-readings" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681">Chapter 15 from “Applied Statistics and Probability for Engineers” by Douglas C. Montgomery and George C. Runger.</a></p>
+</section>
+<hr class="docutils" />
+<section id="supplementary-material">
+<h2>Supplementary Material<a class="headerlink" href="#supplementary-material" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991004707879707681">“Applied Logistic Regression” by David W. Hosmer Jr., Stanley Lemeshow, and Rodney X. Sturdivant.</a></p></li>
-<li><p><a class="reference external" href="https://youtube.com/playlist?list=PLblh5JKOoLUKxzEP5HA2d-Li7IJkHfXSe">Video Lecture: “Logistic Regression” by StatQuest with Josh Starmer.</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=4jRBRDbJemM">Video: “ROC and AUC” — StatQuest with Josh Starmer.</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html">Scikit-learn documentation: Model evaluation — quantifying the quality of predictions.</a></p></li>
 </ol>
-<p><strong>Software Tutorial:</strong>
-Python Tutorial: <a class="reference external" href="https://www.datacamp.com/tutorial/understanding-logistic-regression-python">Logistic Regression in Python</a></p>
-<p><strong>Office Hours:</strong>
-Available upon request. Please email to set up an appointment.</p>
-<p><strong>Assignments:</strong></p>
-<p>Assignment 5: Conduct a multiple regression analysis on a given dataset. Address potential issues of multicollinearity and violations of assumptions. Choose the best model using appropriate model selection techniques. (Due: Week 6 Class 1)</p>
-<p>Assignment 6: Run a one-way and a two-way ANOVA on given datasets. Interpret the ANOVA tables and conduct appropriate post-hoc tests. (Due: Week 8 Class 1)</p>
-<p>Assignment 7: Conduct various non-parametric tests on given datasets. Compare the results with parametric tests where appropriate, and discuss the advantages and disadvantages of non-parametric methods. (Due: Week 9 Class 1)</p>
-<p>Assignment 8: Conduct binary and multinomial logistic regression analyses on given datasets. Interpret the coefficients, assess the model fit, and validate the model. (Due: Week 10 Class 1)</p>
+</section>
+<hr class="docutils" />
+<section id="office-hours">
+<h2>Office Hours<a class="headerlink" href="#office-hours" title="Permalink to this heading">#</a></h2>
+<p>Available upon request. Please send an email to set up an appointment. Students are strongly encouraged to review the notebooks before attending office hours and to bring specific questions about the code examples or the theoretical concepts covered this week.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -613,7 +674,7 @@ Available upon request. Please email to set up an appointment.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./Week_11"
+            path: "./Week_12"
         },
         predefinedOutput: true
     }
@@ -631,7 +692,7 @@ Available upon request. Please email to set up an appointment.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Week_10/10-5-Ejemplo%20seleccion.html"
+       href="../Week_11/11-5-Ejemplo_logistic_regularized.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -640,11 +701,11 @@ Available upon request. Please email to set up an appointment.</p>
       </div>
     </a>
     <a class="right-next"
-       href="11-2-logistic.html"
+       href="12-1-Logistic_evaluation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Modelos lineales generalizados</p>
+        <p class="prev-next-title">12-1 Evaluation Metrics for Logistic Regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -663,9 +724,20 @@ Available upon request. Please email to set up an appointment.</p>
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule">Schedule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-1-confusion-matrix">Topic 1 — Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-2-classification-metrics">Topic 2 — Classification Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-3-roc-curve-and-auc">Topic 3 — ROC Curve and AUC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-4-model-calibration">Topic 4 — Model Calibration</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks-for-this-week">Notebooks for This Week</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-readings">Required Readings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supplementary-material">Supplementary Material</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#office-hours">Office Hours</a></li>
+</ul>
   </nav></div>
 
 </div></div>

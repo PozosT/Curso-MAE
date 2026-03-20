@@ -1,0 +1,1234 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 13 — Poisson Regression and Count Data Models &#8212; MEL 202302</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Week_13/13-1-Poisson_regression';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 13 — Applied Example: Poisson Regression on Count Data" href="13-2-Ejemplo_Poisson.html" />
+    <link rel="prev" title="Modelos de Análisis Estadístico" href="13-0-Schedule_week_13.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Syllabus.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEL 202302</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Syllabus.html">
+                    Syllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-1-Introduction_pensamiento_stat.html">Lectura 1-1: Introducción al Pensamiento estadístico</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-2-Estad%C3%ADstica_descriptiva.html">Lectura 1-2:  Estadística Descriptiva</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-3-Visualizations.html">Lectura 1-3: Visualización de datos con Python</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_2/2-0-Schedule_week_2.html">Semana 2. Probabilidad y distribuciones Probabilidad y Distribuciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_2/2-1-Prob.html">Lectura 2-1: Probabilidad y estadística</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-1-Inference.html">Lectura 3-1: Inferencia estadística</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-2-Hypothesis.html">Lectura 3-2: Pruebas de Hipotesis</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-3-Hypothesis_2.html">Lectura 3-3: Pruebas de Hipotesis 2.</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-1%20Correlaciones.html">Lectura 4-1: Correlaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-2-Simple_linear_regression.html">Lectura 4-2: Regresión lineal simple</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-3-SLR_supuestos.html">Lectura 4-3: Supuestos de la regresión lineal simple</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_5/5-2-Hypothesis_Confidence.html">Lectura 5-1: Inferencia en RLS</a></li>
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_7/7-1-Multiple_linear_regresion.html">Lectura 7-1: Regresión Lineal Múltiple</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_7/7-2-Categorical_variables.html">Lectura 7-2: Predictores categóricos e interacciones</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-1-diagnostics.html">Lectura 8-1: Diagnóstico de modelos</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-2-transformations.html">Lectura 8-2: Transformaciones</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-3-collinearity.html">Lectura 8-3: Colinealidad</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_10/10-1-Selection.html">Selección de variables y creación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_10/10-2-Regularizacion.html">Lectura 10-2: Modelos regularizados</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_10/10-3-Crossvalidation.html">Lectura 10-3: Validación cruzada</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_10/10-4-Ejemplo.html">Regularización en modelos de regresión lineal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_11/11-2-logistic.html">Modelos lineales generalizados</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-0-Schedule_week_12.html">Week 12: Logistic Regression — Model Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-1-Logistic_evaluation.html">12-1 Evaluation Metrics for Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-2-Model_selection_logistic.html">12-2 Model Selection for Logistic Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 13</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="13-0-Schedule_week_13.html">Modelos de Análisis Estadístico</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 13 — Poisson Regression and Count Data Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-2-Ejemplo_Poisson.html">Week 13 — Applied Example: Poisson Regression on Count Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_14/14-0-Schedule_week_14.html">Week 14: Advanced Topics in Regression — GLMs and Survival Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_14/14-1-GLM_overview.html">14-1: Overview of Generalized Linear Models (GLMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_14/14-2-Survival_analysis.html">14-2: Introduction to Survival Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_15/15-0-Schedule_week_15.html">Week 15: Repaso Final — Final Review Session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_15/15-1-Repaso_regresion_lineal.html">15-1: Repaso — Linear Regression (Simple and Multiple)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_15/15-2-Repaso_regresion_logistica.html">15-2: Repaso — Logistic Regression and Count Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pre Parcial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Pre%20Parcial/Pre_parcial.html">Parte I: Análisis Exploratorio de Datos (45 minutos)</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_13/13-1-Poisson_regression.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_13/13-1-Poisson_regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Week_13/13-1-Poisson_regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 13 — Poisson Regression and Count Data Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-analisis-estadistico-universidad-de-los-andes">Modelos de Análisis Estadístico | Universidad de los Andes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prof-alejandra-tabares">Prof. Alejandra Tabares</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-poisson-regression">1. When to Use Poisson Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-of-poisson-regression">Assumptions of Poisson Regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-regression-model">2. The Poisson Regression Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-count-data">3. Simulating Count Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-poisson-regression-with-statsmodels">4. Fitting Poisson Regression with <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-coefficients-as-rate-ratios">5. Interpreting Coefficients as Rate Ratios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#offset-variables-modeling-rates">6. Offset Variables — Modeling Rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overdispersion-diagnosis">7. Overdispersion: Diagnosis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causes">Causes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consequences-of-ignoring-overdispersion">Consequences of Ignoring Overdispersion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dispersion-statistic">The Dispersion Statistic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-binomial-regression">8. Negative Binomial Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">9. Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-13-poisson-regression-and-count-data-models">
+<h1>Week 13 — Poisson Regression and Count Data Models<a class="headerlink" href="#week-13-poisson-regression-and-count-data-models" title="Permalink to this heading">#</a></h1>
+<section id="modelos-de-analisis-estadistico-universidad-de-los-andes">
+<h2>Modelos de Análisis Estadístico | Universidad de los Andes<a class="headerlink" href="#modelos-de-analisis-estadistico-universidad-de-los-andes" title="Permalink to this heading">#</a></h2>
+<section id="prof-alejandra-tabares">
+<h3>Prof. Alejandra Tabares<a class="headerlink" href="#prof-alejandra-tabares" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="when-to-use-poisson-regression">
+<h2>1. When to Use Poisson Regression<a class="headerlink" href="#when-to-use-poisson-regression" title="Permalink to this heading">#</a></h2>
+<p>Poisson regression is the natural starting point whenever the <strong>outcome variable is a non-negative integer count</strong>:</p>
+<ul class="simple">
+<li><p>Number of doctor visits in a year</p></li>
+<li><p>Number of insurance claims per policyholder</p></li>
+<li><p>Number of traffic accidents at an intersection per month</p></li>
+<li><p>Number of publications by a researcher</p></li>
+<li><p>Number of defects in a manufactured unit</p></li>
+</ul>
+<p>Ordinary linear regression is inappropriate for counts because:</p>
+<ol class="arabic simple">
+<li><p>It can predict <strong>negative values</strong>, which are impossible for counts.</p></li>
+<li><p>The <strong>error variance</strong> for counts increases with the mean (heteroscedasticity), violating OLS assumptions.</p></li>
+<li><p>Count distributions are typically <strong>right-skewed</strong>, especially for rare events.</p></li>
+</ol>
+<section id="assumptions-of-poisson-regression">
+<h3>Assumptions of Poisson Regression<a class="headerlink" href="#assumptions-of-poisson-regression" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Assumption</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Poisson distribution</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(Y_i \sim \text{Poisson}(\mu_i)\)</span> — counts are non-negative integers</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Log-linearity</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\log(\mu_i)\)</span> is a linear function of the predictors</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Independence</strong></p></td>
+<td><p>Observations are independent of each other</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Equidispersion</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(E[Y_i] = \text{Var}(Y_i) = \mu_i\)</span> — the most frequently violated assumption</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="the-poisson-regression-model">
+<h2>2. The Poisson Regression Model<a class="headerlink" href="#the-poisson-regression-model" title="Permalink to this heading">#</a></h2>
+<p>Poisson regression is a <strong>Generalized Linear Model (GLM)</strong> with three components:</p>
+<p><strong>Random component:</strong>
+$<span class="math notranslate nohighlight">\(Y_i \sim \text{Poisson}(\mu_i), \qquad i = 1, \ldots, n\)</span>$</p>
+<p><strong>Systematic component (linear predictor):</strong>
+$<span class="math notranslate nohighlight">\(\eta_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip}\)</span>$</p>
+<p><strong>Link function (log link):</strong>
+$<span class="math notranslate nohighlight">\(\log(\mu_i) = \beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip}\)</span>$</p>
+<p>which equivalently gives the <strong>mean response</strong> as:
+$<span class="math notranslate nohighlight">\(\mu_i = \exp(\beta_0 + \beta_1 x_{i1} + \ldots + \beta_p x_{ip})\)</span>$</p>
+<p>The parameters <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> are estimated by <strong>Maximum Likelihood Estimation (MLE)</strong>. The log-likelihood is:
+$<span class="math notranslate nohighlight">\(\ell(\boldsymbol{\beta}) = \sum_{i=1}^n \left[ y_i \log(\mu_i) - \mu_i - \log(y_i!) \right]\)</span>$</p>
+<p>No closed-form solution exists; the score equations are solved iteratively using <strong>Iteratively Reweighted Least Squares (IRLS)</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Imports ──────────────────────────────────────────────────────────────────</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Plot style</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;muted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">110</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Libraries loaded successfully.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="simulating-count-data">
+<h2>3. Simulating Count Data<a class="headerlink" href="#simulating-count-data" title="Permalink to this heading">#</a></h2>
+<p>We simulate a dataset of <strong>500 individuals</strong> where the outcome is the <strong>number of doctor visits per year</strong>. The data-generating process mirrors a Poisson regression:</p>
+<div class="math notranslate nohighlight">
+\[\log(\mu_i) = 0.8 + 0.025 \cdot \text{age}_i - 0.4 \cdot \text{income\_high}_i\]</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code>: continuous, centered around 45 years.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">income_high</span></code>: binary indicator (1 = high income, 0 = low income).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">visits</span></code>: Poisson-distributed count outcome.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># Predictors</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">income_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># 40% high income</span>
+
+<span class="c1"># True linear predictor</span>
+<span class="n">log_mu</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="mf">0.025</span> <span class="o">*</span> <span class="n">age</span> <span class="o">-</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">income_high</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_mu</span><span class="p">)</span>
+
+<span class="c1"># Poisson-distributed counts</span>
+<span class="n">visits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">mu</span><span class="p">)</span>
+
+<span class="c1"># Assemble DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;visits&#39;</span><span class="p">:</span> <span class="n">visits</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span> <span class="s1">&#39;income_high&#39;</span><span class="p">:</span> <span class="n">income_high</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Descriptive statistics:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick look at the count distribution</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Histogram of counts</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;visits&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;visits&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span>
+             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of Doctor Visits&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Number of visits&#39;</span><span class="p">,</span>
+            <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+
+<span class="c1"># Mean vs Variance check</span>
+<span class="n">mean_v</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;visits&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">var_v</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;visits&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Variance&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">mean_v</span><span class="p">,</span> <span class="n">var_v</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="s1">&#39;coral&#39;</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mean vs Variance of Visits&#39;</span><span class="p">,</span>
+            <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">mean_v</span><span class="p">,</span> <span class="n">var_v</span><span class="p">]):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Mean = </span><span class="si">{</span><span class="n">mean_v</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,  Variance = </span><span class="si">{</span><span class="n">var_v</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Variance / Mean = </span><span class="si">{</span><span class="n">var_v</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">mean_v</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">  (ideal ≈ 1 for Poisson)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="fitting-poisson-regression-with-statsmodels">
+<h2>4. Fitting Poisson Regression with <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code><a class="headerlink" href="#fitting-poisson-regression-with-statsmodels" title="Permalink to this heading">#</a></h2>
+<p>We use <code class="docutils literal notranslate"><span class="pre">statsmodels.api.GLM</span></code> with <code class="docutils literal notranslate"><span class="pre">family=sm.families.Poisson()</span></code>. The default link for the Poisson family is the <strong>log link</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit Poisson GLM</span>
+<span class="n">poisson_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span>
+    <span class="n">formula</span><span class="o">=</span><span class="s1">&#39;visits ~ age + income_high&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">poisson_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="interpreting-coefficients-as-rate-ratios">
+<h2>5. Interpreting Coefficients as Rate Ratios<a class="headerlink" href="#interpreting-coefficients-as-rate-ratios" title="Permalink to this heading">#</a></h2>
+<p>The coefficients from Poisson regression are on the <strong>log scale</strong>. To interpret them in the original count scale, we exponentiate:</p>
+<div class="math notranslate nohighlight">
+\[\text{Rate Ratio (IRR)} = e^{\hat{\beta}_j}\]</div>
+<p><strong>Interpretation rules:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e^{\hat{\beta}_j} &gt; 1\)</span>: a one-unit increase in <span class="math notranslate nohighlight">\(x_j\)</span> <strong>multiplies</strong> the expected count by <span class="math notranslate nohighlight">\(e^{\hat{\beta}_j}\)</span> (rate increases).</p></li>
+<li><p><span class="math notranslate nohighlight">\(e^{\hat{\beta}_j} &lt; 1\)</span>: a one-unit increase in <span class="math notranslate nohighlight">\(x_j\)</span> <strong>reduces</strong> the expected count (rate decreases).</p></li>
+<li><p><span class="math notranslate nohighlight">\(e^{\hat{\beta}_j} = 1\)</span>: no effect.</p></li>
+</ul>
+<p>The <strong>percent change</strong> in the expected count per unit increase in <span class="math notranslate nohighlight">\(x_j\)</span> is <span class="math notranslate nohighlight">\((e^{\hat{\beta}_j} - 1) \times 100\%\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract coefficients and compute Rate Ratios with 95% CI</span>
+<span class="n">coef</span> <span class="o">=</span> <span class="n">poisson_model</span><span class="o">.</span><span class="n">params</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="n">poisson_model</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span>
+
+<span class="n">irr_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Coefficient (log scale)&#39;</span><span class="p">:</span> <span class="n">coef</span><span class="p">,</span>
+    <span class="s1">&#39;Rate Ratio (IRR)&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">coef</span><span class="p">),</span>
+    <span class="s1">&#39;IRR CI lower (95%)&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="s1">&#39;IRR CI upper (95%)&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="s1">&#39;p-value&#39;</span><span class="p">:</span> <span class="n">poisson_model</span><span class="o">.</span><span class="n">pvalues</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">irr_table</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True values used in simulation:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Intercept     β₀ = 0.800  → exp(β₀) = </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.800</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  age           β₁ = 0.025  → IRR = </span><span class="si">{:.3f}</span><span class="s1">  (each extra year → +</span><span class="si">{:.1f}</span><span class="s1">% visits)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.025</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  income_high   β₂ = -0.400 → IRR = </span><span class="si">{:.3f}</span><span class="s1">  (high income → </span><span class="si">{:.1f}% f</span><span class="s1">ewer visits)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.400</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.400</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise Rate Ratios with confidence intervals (forest plot style)</span>
+<span class="n">irr_plot</span> <span class="o">=</span> <span class="n">irr_table</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Intercept&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">y_pos</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">irr_plot</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">irr_plot</span><span class="p">[</span><span class="s1">&#39;Rate Ratio (IRR)&#39;</span><span class="p">],</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">irr_plot</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;IRR CI lower (95%)&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;IRR CI upper (95%)&#39;</span><span class="p">],</span>
+              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;IRR = 1 (no effect)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">y_pos</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">irr_plot</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Incidence Rate Ratio (IRR)&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Rate Ratios with 95% CI — Poisson Regression&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="offset-variables-modeling-rates">
+<h2>6. Offset Variables — Modeling Rates<a class="headerlink" href="#offset-variables-modeling-rates" title="Permalink to this heading">#</a></h2>
+<p>Sometimes counts are recorded over <strong>different exposure periods</strong> (time, population size, area, etc.). For example:</p>
+<ul class="simple">
+<li><p>Accidents per hospital, but hospitals vary in the number of beds.</p></li>
+<li><p>Crime counts per city, but cities differ in population.</p></li>
+<li><p>Insurance claims per policyholder, but contracts span different durations.</p></li>
+</ul>
+<p>To model the <strong>rate per unit of exposure</strong>, we include an <strong>offset</strong> — the log of the exposure — as a predictor with a fixed coefficient of 1:</p>
+<div class="math notranslate nohighlight">
+\[\log(\mu_i) = \log(t_i) + \beta_0 + \beta_1 x_{i1} + \ldots\]</div>
+<p>which is equivalent to modelling the <strong>rate</strong> <span class="math notranslate nohighlight">\(\lambda_i = \mu_i / t_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\log\!\left(\frac{\mu_i}{t_i}\right) = \beta_0 + \beta_1 x_{i1} + \ldots\]</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> the offset is passed as <code class="docutils literal notranslate"><span class="pre">exposure</span></code> (which the library log-transforms automatically) or as <code class="docutils literal notranslate"><span class="pre">offset</span></code> (log-transformed manually).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Example with offset: insurance claims per policy-year ──────────────────</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">n_ins</span> <span class="o">=</span> <span class="mi">400</span>
+
+<span class="c1"># Exposure: policy duration in years (varies from 0.5 to 5)</span>
+<span class="n">exposure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_ins</span><span class="p">)</span>
+
+<span class="c1"># Predictor: driver age group (0 = young, 1 = senior)</span>
+<span class="n">senior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_ins</span><span class="p">)</span>
+
+<span class="c1"># True rate model:  log(rate) = -1.5 + 0.6*senior</span>
+<span class="n">log_rate</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span> <span class="o">+</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="n">senior</span>
+<span class="n">mu_ins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_rate</span><span class="p">)</span> <span class="o">*</span> <span class="n">exposure</span>   <span class="c1"># expected claims = rate * exposure</span>
+
+<span class="n">claims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">mu_ins</span><span class="p">)</span>
+
+<span class="n">df_ins</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;claims&#39;</span><span class="p">:</span> <span class="n">claims</span><span class="p">,</span> <span class="s1">&#39;exposure&#39;</span><span class="p">:</span> <span class="n">exposure</span><span class="p">,</span> <span class="s1">&#39;senior&#39;</span><span class="p">:</span> <span class="n">senior</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Insurance dataset (first 8 rows):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_ins</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Average claims: </span><span class="si">{</span><span class="n">claims</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">,  Average exposure: </span><span class="si">{</span><span class="n">exposure</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> yr&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit Poisson with exposure offset</span>
+<span class="n">poisson_offset</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span>
+    <span class="n">formula</span><span class="o">=</span><span class="s1">&#39;claims ~ senior&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_ins</span><span class="p">,</span>
+    <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(),</span>
+    <span class="n">exposure</span><span class="o">=</span><span class="n">df_ins</span><span class="p">[</span><span class="s1">&#39;exposure&#39;</span><span class="p">]</span>   <span class="c1"># statsmodels takes log internally</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">poisson_offset</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Rate Ratios:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;IRR&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">poisson_offset</span><span class="o">.</span><span class="n">params</span><span class="p">),</span>
+    <span class="s1">&#39;CI lower&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">poisson_offset</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="s1">&#39;CI upper&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">poisson_offset</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">True IRR for senior: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="overdispersion-diagnosis">
+<h2>7. Overdispersion: Diagnosis<a class="headerlink" href="#overdispersion-diagnosis" title="Permalink to this heading">#</a></h2>
+<p><strong>Overdispersion</strong> occurs when the observed variance of the count outcome is greater than what the Poisson model predicts (i.e., greater than the mean). It is one of the most common violations in count data models.</p>
+<section id="causes">
+<h3>Causes<a class="headerlink" href="#causes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Unobserved heterogeneity (omitted variables).</p></li>
+<li><p>Excess zeros (zero-inflation).</p></li>
+<li><p>Clustering or correlation among observations.</p></li>
+<li><p>Contagion effects (one event makes future events more likely).</p></li>
+</ul>
+</section>
+<section id="consequences-of-ignoring-overdispersion">
+<h3>Consequences of Ignoring Overdispersion<a class="headerlink" href="#consequences-of-ignoring-overdispersion" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Standard errors are <strong>underestimated</strong>, leading to spuriously significant p-values.</p></li>
+<li><p>Hypothesis tests and confidence intervals are <strong>invalid</strong>.</p></li>
+</ul>
+</section>
+<section id="the-dispersion-statistic">
+<h3>The Dispersion Statistic<a class="headerlink" href="#the-dispersion-statistic" title="Permalink to this heading">#</a></h3>
+<p>A simple check uses the <strong>Pearson chi-squared statistic</strong> divided by the degrees of freedom:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\phi} = \frac{\chi^2_P}{n - p} = \frac{\sum_{i=1}^n (y_i - \hat{\mu}_i)^2 / \hat{\mu}_i}{n - p}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\phi} \approx 1\)</span>: equidispersion — Poisson is appropriate.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\phi} &gt; 1\)</span>: overdispersion — consider Negative Binomial or quasi-Poisson.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{\phi} &lt; 1\)</span>: underdispersion (rare).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Simulate overdispersed data (Negative Binomial DGP) ───────────────────</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">n_od</span> <span class="o">=</span> <span class="mi">600</span>
+
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_od</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">n_od</span><span class="p">)</span>
+
+<span class="c1"># True log-mean</span>
+<span class="n">log_mu_od</span> <span class="o">=</span> <span class="mf">1.2</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">-</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">x2</span>
+<span class="n">mu_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_mu_od</span><span class="p">)</span>
+
+<span class="c1"># Generate overdispersed counts (Negative Binomial with dispersion α=0.8)</span>
+<span class="n">alpha_true</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">alpha_true</span>          <span class="c1"># shape parameter</span>
+<span class="n">p_nb</span> <span class="o">=</span> <span class="n">r</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">mu_od</span><span class="p">)</span>        <span class="c1"># success probability</span>
+<span class="n">y_od</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">negative_binomial</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p_nb</span><span class="p">)</span>
+
+<span class="n">df_od</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_od</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">x1</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="n">x2</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean:     </span><span class="si">{</span><span class="n">y_od</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Variance: </span><span class="si">{</span><span class="n">y_od</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Variance / Mean (raw): </span><span class="si">{</span><span class="n">y_od</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">y_od</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">  (&gt; 1 → overdispersed)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit Poisson to the overdispersed data</span>
+<span class="n">poisson_od</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="s1">&#39;y ~ x1 + x2&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_od</span><span class="p">,</span>
+                     <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Compute Pearson dispersion statistic</span>
+<span class="n">mu_hat</span> <span class="o">=</span> <span class="n">poisson_od</span><span class="o">.</span><span class="n">mu</span>
+<span class="n">pearson_chi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_od</span> <span class="o">-</span> <span class="n">mu_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">mu_hat</span><span class="p">)</span>
+<span class="n">df_resid</span> <span class="o">=</span> <span class="n">poisson_od</span><span class="o">.</span><span class="n">df_resid</span>
+<span class="n">phi_hat</span> <span class="o">=</span> <span class="n">pearson_chi2</span> <span class="o">/</span> <span class="n">df_resid</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pearson chi² / df  = </span><span class="si">{</span><span class="n">pearson_chi2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> / </span><span class="si">{</span><span class="n">df_resid</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">phi_hat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">phi_hat</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dispersion statistic &gt;&gt; 1 → Strong evidence of overdispersion.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The Poisson model underestimates standard errors.&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">phi_hat</span> <span class="o">&gt;</span> <span class="mf">1.1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mild overdispersion detected. Consider Negative Binomial or quasi-Poisson.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No strong evidence of overdispersion. Poisson model may be adequate.&#39;</span><span class="p">)</span>
+
+<span class="c1"># Also shown in the model summary as &#39;Pearson chi2&#39;</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Note: statsmodels also reports the Pearson chi² in the summary table.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="negative-binomial-regression">
+<h2>8. Negative Binomial Regression<a class="headerlink" href="#negative-binomial-regression" title="Permalink to this heading">#</a></h2>
+<p>The <strong>Negative Binomial (NB2)</strong> model extends Poisson regression by adding a <strong>dispersion parameter</strong> <span class="math notranslate nohighlight">\(\alpha \geq 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\text{Var}(Y_i) = \mu_i + \alpha \mu_i^2\]</div>
+<p>When <span class="math notranslate nohighlight">\(\alpha = 0\)</span> the model reduces to Poisson. As <span class="math notranslate nohighlight">\(\alpha\)</span> increases, the distribution becomes more spread out, accommodating overdispersion.</p>
+<p>The link function and linear predictor are <strong>identical</strong> to Poisson regression, so coefficient interpretation as rate ratios remains the same.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> we use <code class="docutils literal notranslate"><span class="pre">sm.families.NegativeBinomial()</span></code> for the GLM interface, or <code class="docutils literal notranslate"><span class="pre">smf.negativebinomial()</span></code> which estimates <span class="math notranslate nohighlight">\(\alpha\)</span> jointly with <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> via MLE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit Negative Binomial regression</span>
+<span class="n">nb_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">negativebinomial</span><span class="p">(</span><span class="s1">&#39;y ~ x1 + x2&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_od</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nb_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare Poisson vs Negative Binomial coefficients and standard errors</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Poisson coef&#39;</span><span class="p">:</span> <span class="n">poisson_od</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+    <span class="s1">&#39;Poisson SE&#39;</span><span class="p">:</span> <span class="n">poisson_od</span><span class="o">.</span><span class="n">bse</span><span class="p">,</span>
+    <span class="s1">&#39;NB coef&#39;</span><span class="p">:</span> <span class="n">nb_model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">poisson_od</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+    <span class="s1">&#39;NB SE&#39;</span><span class="p">:</span> <span class="n">nb_model</span><span class="o">.</span><span class="n">bse</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">poisson_od</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coefficient comparison — Poisson vs Negative Binomial:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">comparison</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Estimated alpha (dispersion): </span><span class="si">{</span><span class="n">nb_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;True alpha used in simulation: </span><span class="si">{</span><span class="n">alpha_true</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Note: NB standard errors are larger (Poisson SEs were underestimated).&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># AIC comparison</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model comparison via AIC (lower is better):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Poisson AIC:           </span><span class="si">{</span><span class="n">poisson_od</span><span class="o">.</span><span class="n">aic</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Negative Binomial AIC: </span><span class="si">{</span><span class="n">nb_model</span><span class="o">.</span><span class="n">aic</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">delta_aic</span> <span class="o">=</span> <span class="n">poisson_od</span><span class="o">.</span><span class="n">aic</span> <span class="o">-</span> <span class="n">nb_model</span><span class="o">.</span><span class="n">aic</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  ΔAIC (Poisson - NB):   </span><span class="si">{</span><span class="n">delta_aic</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">delta_aic</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  Strong preference for Negative Binomial model.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visual: compare predicted distributions from both models</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="n">axes</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">poisson_od</span><span class="p">,</span> <span class="n">nb_model</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Poisson Model&#39;</span><span class="p">,</span> <span class="s1">&#39;Negative Binomial Model&#39;</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">mu_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+    <span class="n">observed_counts</span> <span class="o">=</span> <span class="n">df_od</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mu_pred</span><span class="p">,</span> <span class="n">observed_counts</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">mu_pred</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">observed_counts</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Perfect fit&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Predicted μ&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Observed y&#39;</span><span class="p">,</span>
+           <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Predicted vs Observed — </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>9. Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Key takeaway</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>When to use Poisson regression</strong></p></td>
+<td><p>Non-negative integer counts; events per unit of exposure</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Link function</strong></p></td>
+<td><p>Log link ensures predicted counts are always positive</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Coefficient interpretation</strong></p></td>
+<td><p>Exponentiate to get Incidence Rate Ratios (IRR)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Offset</strong></p></td>
+<td><p>Use <code class="docutils literal notranslate"><span class="pre">exposure=</span></code> when counts come from different exposure windows</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Overdispersion</strong></p></td>
+<td><p>Check Pearson <span class="math notranslate nohighlight">\(\phi = \chi^2_P / df\)</span>; <span class="math notranslate nohighlight">\(\phi \gg 1\)</span> signals a problem</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Negative Binomial</strong></p></td>
+<td><p>Adds dispersion parameter <span class="math notranslate nohighlight">\(\alpha\)</span>; reduces to Poisson when <span class="math notranslate nohighlight">\(\alpha=0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Model selection</strong></p></td>
+<td><p>Compare AIC; NB almost always wins when data are overdispersed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p><em>Next: <code class="docutils literal notranslate"><span class="pre">13-2-Ejemplo_Poisson.ipynb</span></code> — full applied example on a realistic count dataset.</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Week_13"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13-0-Schedule_week_13.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelos de Análisis Estadístico</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13-2-Ejemplo_Poisson.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 13 — Applied Example: Poisson Regression on Count Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-analisis-estadistico-universidad-de-los-andes">Modelos de Análisis Estadístico | Universidad de los Andes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prof-alejandra-tabares">Prof. Alejandra Tabares</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-poisson-regression">1. When to Use Poisson Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-of-poisson-regression">Assumptions of Poisson Regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-poisson-regression-model">2. The Poisson Regression Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-count-data">3. Simulating Count Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-poisson-regression-with-statsmodels">4. Fitting Poisson Regression with <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-coefficients-as-rate-ratios">5. Interpreting Coefficients as Rate Ratios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#offset-variables-modeling-rates">6. Offset Variables — Modeling Rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overdispersion-diagnosis">7. Overdispersion: Diagnosis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causes">Causes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consequences-of-ignoring-overdispersion">Consequences of Ignoring Overdispersion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dispersion-statistic">The Dispersion Statistic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-binomial-regression">8. Negative Binomial Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">9. Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alejandra Tabares
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
