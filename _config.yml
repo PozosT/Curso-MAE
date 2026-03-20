@@ -1,34 +1,58 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: MEL 202302
-author: Alejandra Tabares
-
+title: Modelos de Análisis Estadístico
+author: Alejandra Tabares Pozos
 
 # Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: off
   timeout: -1
 
+# MyST extensions — habilita matemáticas y otras funcionalidades
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - colon_fence
+    - deflist
+    - html_image
+  myst_dmath_double_inline: true
 
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
     targetname: book.tex
 
-
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/PozosT/Curso-MAE  # Online location of your book
-  branch: main  # Which branch of the repository should be used when creating links (optional)
+  url: https://github.com/PozosT/Curso-MAE
+  branch: main
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# HTML settings
 html:
   use_issues_button: true
   use_repository_button: true
+  use_download_button: true
+  home_page_in_toc: true
+  extra_navbar: "Curso MAE · <a href='mailto:a.tabaresp@uniandes.edu.co'>Contacto</a>"
+  extra_footer: |
+    <p>Universidad de los Andes · Prof. Alejandra Tabares Pozos ·
+    <a href='mailto:a.tabaresp@uniandes.edu.co'>a.tabaresp@uniandes.edu.co</a></p>
+  announcement: "📘 Bienvenidos al libro del curso Modelos de Análisis Estadístico"
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
 
+# Sphinx configuration
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    html_theme_options:
+      show_toc_level: 2
+      navigation_depth: 3
+      collapse_navigation: true
+      logo_only: false
+      show_prev_next: true
+    html_css_files:
+      - custom.css

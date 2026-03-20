@@ -1,0 +1,188 @@
+/* ============================================================
+   Curso MAE — Estilos personalizados
+   Universidad de los Andes
+   ============================================================ */
+
+/* --- Paleta de colores Uniandes ----------------------------- */
+:root {
+  --uniandes-primary:   #C8102E;   /* rojo Uniandes          */
+  --uniandes-secondary: #003087;   /* azul oscuro             */
+  --uniandes-accent:    #E8A820;   /* dorado                  */
+  --uniandes-light:     #F5F5F5;
+  --code-bg:            #F8F8F8;
+  --border-color:       #E0E0E0;
+}
+
+/* --- Tipografía -------------------------------------------- */
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2C2C2C;
+}
+
+/* --- Encabezados ------------------------------------------- */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+h1 {
+  color: var(--uniandes-secondary);
+  border-bottom: 3px solid var(--uniandes-primary);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  color: var(--uniandes-secondary);
+  border-left: 4px solid var(--uniandes-primary);
+  padding-left: 0.6em;
+}
+
+h3 {
+  color: #444;
+}
+
+/* --- Barra lateral ----------------------------------------- */
+.bd-sidebar {
+  background-color: #FAFAFA;
+  border-right: 1px solid var(--border-color);
+}
+
+.bd-sidebar .nav-link.active {
+  color: var(--uniandes-primary) !important;
+  font-weight: 600;
+  background-color: rgba(200, 16, 46, 0.06);
+  border-left: 3px solid var(--uniandes-primary);
+}
+
+/* --- Navbar ------------------------------------------------- */
+.navbar {
+  background-color: var(--uniandes-secondary) !important;
+  border-bottom: 3px solid var(--uniandes-primary);
+}
+
+.navbar-brand, .navbar .nav-link {
+  color: #FFFFFF !important;
+}
+
+/* --- Bloques de código ------------------------------------- */
+pre, code {
+  font-family: "Fira Code", "JetBrains Mono", "Courier New", monospace;
+  font-size: 0.88em;
+}
+
+div.highlight, .highlight pre {
+  background-color: var(--code-bg) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1em;
+}
+
+/* --- Outputs de celdas ------------------------------------- */
+.cell_output {
+  border-left: 3px solid var(--uniandes-accent);
+  background-color: #FFFDF5;
+  padding: 0.5em 1em;
+  border-radius: 0 4px 4px 0;
+  margin-top: 0.3em;
+}
+
+/* --- Tablas ------------------------------------------------ */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2em 0;
+  font-size: 0.93em;
+}
+
+table thead tr {
+  background-color: var(--uniandes-secondary);
+  color: #FFFFFF;
+}
+
+table thead th {
+  padding: 0.6em 1em;
+  font-weight: 600;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: var(--uniandes-light);
+}
+
+table tbody td {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* --- Fórmulas matemáticas ---------------------------------- */
+.math, .MathJax {
+  font-size: 1.05em !important;
+}
+
+/* Fórmulas en bloque con fondo suave */
+.math-block, mjx-container[display="true"] {
+  background-color: #F0F4FF;
+  padding: 0.8em 1.2em;
+  border-radius: 6px;
+  border-left: 4px solid var(--uniandes-secondary);
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+/* --- Admonitions (notas, advertencias) --------------------- */
+.admonition {
+  border-radius: 6px;
+  border-left-width: 5px;
+}
+
+.admonition.note {
+  border-left-color: var(--uniandes-secondary);
+  background-color: #EEF3FF;
+}
+
+.admonition.warning {
+  border-left-color: var(--uniandes-accent);
+  background-color: #FFFBEA;
+}
+
+.admonition.tip {
+  border-left-color: #28A745;
+  background-color: #EAFAF1;
+}
+
+/* --- Pie de página ----------------------------------------- */
+footer {
+  border-top: 2px solid var(--uniandes-primary);
+  padding-top: 1em;
+  font-size: 0.85em;
+  color: #666;
+  text-align: center;
+}
+
+/* --- Botones de navegación --------------------------------- */
+.prev-next-area a {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  color: var(--uniandes-secondary);
+  transition: background-color 0.2s;
+}
+
+.prev-next-area a:hover {
+  background-color: var(--uniandes-secondary);
+  color: #FFFFFF;
+}
+
+/* --- Anuncio banner ---------------------------------------- */
+.bd-header-announcement {
+  background-color: var(--uniandes-secondary);
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* --- Imágenes ---------------------------------------------- */
+img {
+  border-radius: 4px;
+  max-width: 100%;
+}

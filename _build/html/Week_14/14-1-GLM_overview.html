@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>14-1: Panorama de los Modelos Lineales Generalizados (GLMs) &#8212; MEL 202302</title>
+    <title>14-1: Panorama de los Modelos Lineales Generalizados (GLMs) &#8212; Modelos de Análisis Estadístico</title>
   
   
   
@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -107,8 +109,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -156,19 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">MEL 202302</p>
+    <p class="title logo__title">Modelos de Análisis Estadístico</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../Syllabus.html">
-                    Syllabus
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
@@ -368,84 +362,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_14/14-1-GLM_overview.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_14/14-1-GLM_overview.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -548,7 +464,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-marco-glm">1. El Marco GLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-marco-glm">1. El Marco GLM</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-aleatorio">1.1 Componente Aleatorio</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-sistematico">1.2 Componente Sistemático</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-enlace">1.3 Función de Enlace</a></li>
@@ -556,14 +472,14 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-glm-comunes">2. Familias GLM Comunes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-glms-con-statsmodels-ejemplos-simulados">3. Ajuste de GLMs con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> — Ejemplos Simulados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-elegir-una-familia-glm">4. Cómo Elegir una Familia GLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-elegir-una-familia-glm">4. Cómo Elegir una Familia GLM</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-observe-la-variable-respuesta">Paso 1 — Observe la variable respuesta</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-verifique-la-relacion-media-varianza">Paso 2 — Verifique la relación media-varianza</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-compare-modelos-candidatos">Paso 3 — Compare modelos candidatos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-inspeccione-los-residuos">Paso 4 — Inspeccione los residuos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza-y-bondad-de-ajuste-en-glms">5. Devianza y Bondad de Ajuste en GLMs</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza-y-bondad-de-ajuste-en-glms">5. Devianza y Bondad de Ajuste en GLMs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza">Devianza</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza-nula-y-residual">Devianza Nula y Residual</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-chi-2-de-pearson">Estadístico <span class="math notranslate nohighlight">\(\chi^2\)</span> de Pearson</a></li>
@@ -1107,7 +1023,7 @@ R^2_{\text{McFadden}} = 1 - \frac{\ell(\hat{\boldsymbol{\beta}})}{\ell(\boldsymb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-marco-glm">1. El Marco GLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-marco-glm">1. El Marco GLM</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-aleatorio">1.1 Componente Aleatorio</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-sistematico">1.2 Componente Sistemático</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-enlace">1.3 Función de Enlace</a></li>
@@ -1115,14 +1031,14 @@ R^2_{\text{McFadden}} = 1 - \frac{\ell(\hat{\boldsymbol{\beta}})}{\ell(\boldsymb
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-glm-comunes">2. Familias GLM Comunes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-de-glms-con-statsmodels-ejemplos-simulados">3. Ajuste de GLMs con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> — Ejemplos Simulados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-elegir-una-familia-glm">4. Cómo Elegir una Familia GLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-elegir-una-familia-glm">4. Cómo Elegir una Familia GLM</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-observe-la-variable-respuesta">Paso 1 — Observe la variable respuesta</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-verifique-la-relacion-media-varianza">Paso 2 — Verifique la relación media-varianza</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-compare-modelos-candidatos">Paso 3 — Compare modelos candidatos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-inspeccione-los-residuos">Paso 4 — Inspeccione los residuos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza-y-bondad-de-ajuste-en-glms">5. Devianza y Bondad de Ajuste en GLMs</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza-y-bondad-de-ajuste-en-glms">5. Devianza y Bondad de Ajuste en GLMs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza">Devianza</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#devianza-nula-y-residual">Devianza Nula y Residual</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-chi-2-de-pearson">Estadístico <span class="math notranslate nohighlight">\(\chi^2\)</span> de Pearson</a></li>
@@ -1144,7 +1060,7 @@ R^2_{\text{McFadden}} = 1 - \frac{\ell(\hat{\boldsymbol{\beta}})}{\ell(\boldsymb
   <div class="footer-item">
     
 <p class="component-author">
-By Alejandra Tabares
+By Alejandra Tabares Pozos
 </p>
 
   </div>

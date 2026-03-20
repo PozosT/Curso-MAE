@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; MEL 202302</title>
+    <title>&lt;no title&gt; &#8212; Modelos de Análisis Estadístico</title>
   
   
   
@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -65,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Week_10/10-0-Schedule_week_10';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Parte I: Análisis Exploratorio de Datos (45 minutos)" href="../Pre%20Parcial/Pre_parcial.html" />
+    <link rel="next" title="Selección de variables y creación de modelos" href="10-1-Selection.html" />
     <link rel="prev" title="&lt;no title&gt;" href="../Week_9/9-0-Schedule_week_9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -105,8 +107,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -154,19 +156,11 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">MEL 202302</p>
+    <p class="title logo__title">Modelos de Análisis Estadístico</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../Syllabus.html">
-                    Syllabus
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
@@ -268,6 +262,50 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-1-Selection.html">Selección de variables y creación de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-2-Regularizacion.html">Lectura 10-2: Modelos regularizados</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="10-3-Crossvalidation.html">Lectura 10-3: Validación cruzada</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10-4-Ejemplo.html">Regularización en modelos de regresión lineal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 11</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_11/11-2-logistic.html">Modelos lineales generalizados</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 12</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-0-Schedule_week_12.html">Semana 12: Regresión Logística — Evaluación de Modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-1-Logistic_evaluation.html">12-1 Métricas de Evaluación para Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_12/12-2-Model_selection_logistic.html">12-2 Selección de Modelos para Regresión Logística</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 13</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_13/13-0-Schedule_week_13.html">Modelos de Análisis Estadístico</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_13/13-1-Poisson_regression.html">Semana 13 — Regresión de Poisson y Modelos para Datos de Conteo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_13/13-2-Ejemplo_Poisson.html">Semana 13 — Ejemplo Aplicado: Regresión de Poisson en Datos de Conteo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 14</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_14/14-0-Schedule_week_14.html">Semana 14: Temas Avanzados en Regresión — GLMs y Análisis de Supervivencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_14/14-1-GLM_overview.html">14-1: Panorama de los Modelos Lineales Generalizados (GLMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_14/14-2-Survival_analysis.html">14-2: Introducción al Análisis de Supervivencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 15</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_15/15-0-Schedule_week_15.html">Semana 15: Repaso Final — Sesión de Revisión Final</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_15/15-1-Repaso_regresion_lineal.html">15-1: Repaso — Regresión Lineal (Simple y Múltiple)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_15/15-2-Repaso_regresion_logistica.html">15-2: Repaso — Regresión Logística y Modelos de Conteo</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pre Parcial</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Pre%20Parcial/Pre_parcial.html">Parte I: Análisis Exploratorio de Datos (45 minutos)</a></li>
@@ -317,84 +355,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_10/10-0-Schedule_week_10.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_10/10-0-Schedule_week_10.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -542,9 +502,9 @@ This week is devoted to regression diagnostics and remedies. We’ll look at how
 <p><a class="reference external" href="https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991004028619707681">Chapters 10 and 11 from “Introduction to linear regression analysis” by  Douglas C. Montgomery, Elizabeth A. Peck, and Vining G.  Geoffrey</a></p>
 <p><strong>Supplementary Material:</strong></p>
 <ol class="arabic simple">
-<li><p>Chapter 4 from “Regression Analysis by Example” by Samprit Chatterjee and Ali S. Hadi.(<a class="reference external" href="https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681">https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681</a>)</p></li>
-<li><p>Chapter 4 from “Regression Modeling Strategies” by Frank E. Harrell Jr.(<a class="reference external" href="https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681">https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681</a>)</p></li>
-<li><p>Video: “Regression Diagnostics” by Brian Caffo (<a class="reference external" href="https://www.youtube.com/watch?v=VohfwSJuG4k">https://www.youtube.com/watch?v=VohfwSJuG4k</a>)</p></li>
+<li><p>Chapter 4 from “Regression Analysis by Example” by Samprit Chatterjee and Ali S. Hadi.(https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681)</p></li>
+<li><p>Chapter 4 from “Regression Modeling Strategies” by Frank E. Harrell Jr.(https://uniandes.primo.exlibrisgroup.com/permalink/57U_UDLA/1sib6to/alma991005387282807681)</p></li>
+<li><p>Video: “Regression Diagnostics” by Brian Caffo (https://www.youtube.com/watch?v=VohfwSJuG4k)</p></li>
 </ol>
 <p><strong>Software Tutorial:</strong>
 Python Tutorial: Multiple Regression and Model Selection in Python</p>
@@ -591,11 +551,11 @@ Available upon request. Please email to set up an appointment.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../Pre%20Parcial/Pre_parcial.html"
+       href="10-1-Selection.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Parte I: Análisis Exploratorio de Datos (45 minutos)</p>
+        <p class="prev-next-title">Selección de variables y creación de modelos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -630,7 +590,7 @@ Available upon request. Please email to set up an appointment.</p>
   <div class="footer-item">
     
 <p class="component-author">
-By Alejandra Tabares
+By Alejandra Tabares Pozos
 </p>
 
   </div>
