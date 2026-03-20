@@ -1,0 +1,3019 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Parte I: Análisis Exploratorio de Datos (45 minutos) &#8212; MEL 202302</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Pre Parcial/Pre_parcial_sol';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Syllabus.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEL 202302</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Syllabus.html">
+                    Syllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-1-Introduction_pensamiento_stat.html">Lectura 1-1: Introducción al Pensamiento estadístico</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-2-Estad%C3%ADstica_descriptiva.html">Lectura 1-2:  Estadística Descriptiva</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-3-Visualizations.html">Lectura 1-3: Visualización de datos con Python</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_2/2-0-Schedule_week_2.html">Semana 2. Probabilidad y distribuciones Probabilidad y Distribuciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_2/2-1-Prob.html">Lectura 2-1: Probabilidad y estadística</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-1-Inference.html">Lectura 3-1: Inferencia estadística</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-2-Hypothesis.html">Lectura 3-2: Pruebas de Hipotesis</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-3-Hypothesis_2.html">Lectura 3-3: Pruebas de Hipotesis 2.</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-1%20Correlaciones.html">Lectura 4-1: Correlaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-2-Simple_linear_regression.html">Lectura 4-2: Regresión lineal simple</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-3-SLR_supuestos.html">Lectura 4-3: Supuestos de la regresión lineal simple</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_5/5-2-Hypothesis_Confidence.html">Lectura 5-1: Inferencia en RLS</a></li>
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_7/7-1-Multiple_linear_regresion.html">Lectura 7-1: Regresión Lineal Múltiple</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_7/7-2-Categorical_variables.html">Lectura 7-2: Predictores categóricos e interacciones</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-1-diagnostics.html">Lectura 8-1: Diagnóstico de modelos</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-2-transformations.html">Lectura 8-2: Transformaciones</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-3-collinearity.html">Lectura 8-3: Colinealidad</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pre Parcial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Pre_parcial.html">Parte I: Análisis Exploratorio de Datos (45 minutos)</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Pre Parcial/Pre_parcial_sol.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FPre Parcial/Pre_parcial_sol.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Pre Parcial/Pre_parcial_sol.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parte I: Análisis Exploratorio de Datos (45 minutos)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Parte I: Análisis Exploratorio de Datos (45 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-ii-regresion-lineal-multiple-30-minutos">Parte II: Regresión Lineal Múltiple (30 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-iii-regresion-regularizada-30-minutos">Parte III: Regresión Regularizada (30 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-iv-regresion-logistica-30-minutos">Parte IV: Regresión Logística (30 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood-ll">Log-Likelihood (LL):</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ll-null">LL-Null:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio-test-llr-y-su-p-valor">Likelihood Ratio Test (LLR) y su p-valor:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-r-squared">Pseudo R-squared:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-coeficientes-log-odds">Interpretación de los Coeficientes (log Odds):</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#odds-ratios-or">Odds Ratios (OR):</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-marginales">Efectos Marginales:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion">Matriz de Confusión:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#informe-de-clasificacion">Informe de Clasificación:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-auc-score-0-908695387471864">ROC AUC Score: 0.908695387471864</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-v-regresion-logistica-regularizada-15-minutos">Parte V: Regresión Logística Regularizada (15 minutos)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-vi-estudio-de-caso-aplicado-30-minutos">Parte VI: Estudio de Caso Aplicado (30 minutos)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="parte-i-analisis-exploratorio-de-datos-45-minutos">
+<h1>Parte I: Análisis Exploratorio de Datos (45 minutos)<a class="headerlink" href="#parte-i-analisis-exploratorio-de-datos-45-minutos" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Análisis Exploratorio Detallado</strong>: Realice un análisis exploratorio de los datos proporcionados. Incluya estadísticas descriptivas, análisis de correlaciones, y visualizaciones pertinentes.</p></li>
+<li><p><strong>Preparación de Datos</strong>: Identifique y trate los valores atípicos y faltantes. Explique sus decisiones.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aumentar el tamaño del conjunto de datos y agregar valores atípicos y faltantes</span>
+
+<span class="c1"># Nuevo número de estudiantes en el conjunto de datos</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="c1"># Generación de nuevos datos con más variabilidad</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Para reproducibilidad</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Horas_Estudio&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>  <span class="c1"># horas de estudio por semana</span>
+    <span class="s2">&quot;Calificacion_Promedio&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="c1"># calificación promedio</span>
+    <span class="s2">&quot;Actividades_Extracurriculares&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]),</span>  <span class="c1"># participación en actividades extracurriculares</span>
+    <span class="s2">&quot;Estado_Socioeconomico&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;Bajo&quot;</span><span class="p">,</span> <span class="s2">&quot;Medio&quot;</span><span class="p">,</span> <span class="s2">&quot;Alto&quot;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span>  <span class="c1"># estado socioeconómico</span>
+    <span class="s2">&quot;Presencia_Tutorias&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>  <span class="c1"># si reciben tutorías o no</span>
+<span class="p">}</span>
+
+<span class="c1"># Crear DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Introducir valores atípicos</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">outliers_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.05</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 5% de valores atípicos</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outliers_indices</span><span class="p">,</span> <span class="s2">&quot;Horas_Estudio&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">3</span>  <span class="c1"># Triplicar horas de estudio en valores atípicos</span>
+
+<span class="c1"># Introducir datos faltantes</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">missing_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 10% de valores faltantes</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing_indices</span><span class="p">,</span> <span class="s2">&quot;Calificacion_Promedio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>  <span class="c1"># Asignar NaN a calificaciones promedio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estadísticas descriptivas con los nuevos datos</span>
+<span class="n">descriptive_stats_updated</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">descriptive_stats_updated</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>  <span class="c1"># Transponer para mejor visualización</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-9ea19cf7-5cdd-4e73-bc38-f3521811d0b3" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>unique</th>
+      <th>top</th>
+      <th>freq</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Horas_Estudio</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.457351</td>
+      <td>3.213992</td>
+      <td>0.0</td>
+      <td>3.628866</td>
+      <td>5.070461</td>
+      <td>6.548625</td>
+      <td>26.537652</td>
+    </tr>
+    <tr>
+      <th>Calificacion_Promedio</th>
+      <td>450.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>73.856064</td>
+      <td>14.368981</td>
+      <td>29.307854</td>
+      <td>64.397106</td>
+      <td>74.057095</td>
+      <td>82.883686</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>Actividades_Extracurriculares</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.44</td>
+      <td>0.496884</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Estado_Socioeconomico</th>
+      <td>500</td>
+      <td>3</td>
+      <td>Medio</td>
+      <td>254</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Presencia_Tutorias</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.298</td>
+      <td>0.457838</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-9ea19cf7-5cdd-4e73-bc38-f3521811d0b3')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-9ea19cf7-5cdd-4e73-bc38-f3521811d0b3 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-9ea19cf7-5cdd-4e73-bc38-f3521811d0b3');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-1e118aa9-1afa-4d9b-89a5-27fb6b5ec60e">
+  <button class="colab-df-quickchart" onclick="quickchart('df-1e118aa9-1afa-4d9b-89a5-27fb6b5ec60e')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-1e118aa9-1afa-4d9b-89a5-27fb6b5ec60e button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>Aquí está el análisis estadístico descriptivo de este conjunto de datos:</p>
+<ul class="simple">
+<li><p><strong>Horas de Estudio</strong></p>
+<ul>
+<li><p>Media: 5.46 horas</p></li>
+<li><p>Desviación estándar: 3.21 horas</p></li>
+<li><p>Mínimo: 0 horas</p></li>
+<li><p>Máximo: 26.54 horas (valores atípicos presentes)</p></li>
+<li><p>25% de los estudiantes estudian menos de 3.63 horas</p></li>
+<li><p>50% (mediana) de los estudiantes estudian aproximadamente 5.07 horas</p></li>
+<li><p>75% de los estudiantes estudian menos de 6.55 horas</p></li>
+</ul>
+</li>
+<li><p><strong>Calificación Promedio</strong> (con datos faltantes)</p>
+<ul>
+<li><p>Media: 73.86</p></li>
+<li><p>Desviación estándar: 14.37</p></li>
+<li><p>Mínimo: 29.31</p></li>
+<li><p>Máximo: 100.00</p></li>
+<li><p>25% de los estudiantes tienen una calificación inferior a 64.40</p></li>
+<li><p>50% (mediana) tienen una calificación de aproximadamente 74.06</p></li>
+<li><p>75% tienen una calificación inferior a 82.88</p></li>
+</ul>
+</li>
+<li><p><strong>Actividades Extracurriculares</strong></p>
+<ul>
+<li><p>44% de los estudiantes participan en actividades extracurriculares</p></li>
+</ul>
+</li>
+<li><p><strong>Estado Socioeconómico</strong></p>
+<ul>
+<li><p>El estado más común es ‘Medio’, presente en 254 estudiantes</p></li>
+</ul>
+</li>
+<li><p><strong>Presencia de Tutorías</strong></p>
+<ul>
+<li><p>Solo el 29.8% de los estudiantes reciben tutorías</p></li>
+</ul>
+</li>
+</ul>
+<p>Este análisis proporciona una visión general de los datos. El siguiente paso sería tratar los valores atípicos y los datos faltantes antes de proceder con análisis más avanzados o la construcción de modelos estadísticos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Análisis Exploratorio Detallado</span>
+
+<span class="c1">## Visualizaciones para entender mejor la distribución de los datos</span>
+
+<span class="c1"># Histogramas para variables numéricas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Horas de Estudio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Calificacion_Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Calificación Promedio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Gráficos de barras para variables categóricas</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Participación en Actividades Extracurriculares&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Estado_Socioeconomico&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución del Estado Socioeconómico&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Análisis de Correlaciones</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mapa de Calor de Correlaciones&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/48770cd7d3f3d30a16a61b4ca62327cd21d41470e6122b175cb38731b0f587d9.png" src="../_images/48770cd7d3f3d30a16a61b4ca62327cd21d41470e6122b175cb38731b0f587d9.png" />
+<img alt="../_images/433e914e2d763e8181c5d79c9301d169ba2edce27db76b77e6620ade3b4ddd08.png" src="../_images/433e914e2d763e8181c5d79c9301d169ba2edce27db76b77e6620ade3b4ddd08.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-4-02cb9eb3ea10&gt;:33: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  correlation_matrix = df.corr()
+</pre></div>
+</div>
+<img alt="../_images/371a1128291c69fd8668fca513b684348ced59f48511726a5fe96d2f32fdc7f8.png" src="../_images/371a1128291c69fd8668fca513b684348ced59f48511726a5fe96d2f32fdc7f8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 500 entries, 0 to 499
+Data columns (total 5 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   Horas_Estudio                  500 non-null    float64
+ 1   Calificacion_Promedio          450 non-null    float64
+ 2   Actividades_Extracurriculares  500 non-null    int64  
+ 3   Estado_Socioeconomico          500 non-null    object 
+ 4   Presencia_Tutorias             500 non-null    int64  
+dtypes: float64(2), int64(2), object(1)
+memory usage: 19.7+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preparación de Datos: Tratamiento de Valores Atípicos y Faltantes</span>
+
+<span class="c1">## Identificación y tratamiento de valores atípicos en &#39;Horas_Estudio&#39;</span>
+<span class="n">q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span>
+
+<span class="c1"># Considerar valores fuera de estos límites como atípicos</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
+
+<span class="c1">## Tratamiento de datos faltantes en &#39;Calificacion_Promedio&#39;</span>
+<span class="c1"># Reemplazar con la mediana, ya que la media puede estar sesgada por valores atípicos</span>
+<span class="n">median_calificacion</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Calificacion_Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Calificacion_Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">median_calificacion</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Estadísticas descriptivas actualizadas después del tratamiento</span>
+<span class="n">updated_descriptive_stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">updated_descriptive_stats</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>  <span class="c1"># Transponer para mejor visualización</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-1fc65b6c-62a1-43df-8e6e-ef22e72915bf" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>unique</th>
+      <th>top</th>
+      <th>freq</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Horas_Estudio</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.210999</td>
+      <td>2.30812</td>
+      <td>0.0</td>
+      <td>3.628866</td>
+      <td>5.070461</td>
+      <td>6.548625</td>
+      <td>10.928263</td>
+    </tr>
+    <tr>
+      <th>Calificacion_Promedio</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>73.876167</td>
+      <td>13.630228</td>
+      <td>29.307854</td>
+      <td>65.456065</td>
+      <td>74.057095</td>
+      <td>81.756095</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>Actividades_Extracurriculares</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.44</td>
+      <td>0.496884</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Estado_Socioeconomico</th>
+      <td>500</td>
+      <td>3</td>
+      <td>Medio</td>
+      <td>254</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Presencia_Tutorias</th>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.298</td>
+      <td>0.457838</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-1fc65b6c-62a1-43df-8e6e-ef22e72915bf')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-1fc65b6c-62a1-43df-8e6e-ef22e72915bf button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-1fc65b6c-62a1-43df-8e6e-ef22e72915bf');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-9ee28125-846f-4572-b563-bb6fce1a4b4c">
+  <button class="colab-df-quickchart" onclick="quickchart('df-9ee28125-846f-4572-b563-bb6fce1a4b4c')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-9ee28125-846f-4572-b563-bb6fce1a4b4c button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 500 entries, 0 to 499
+Data columns (total 5 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   Horas_Estudio                  500 non-null    float64
+ 1   Calificacion_Promedio          500 non-null    float64
+ 2   Actividades_Extracurriculares  500 non-null    int64  
+ 3   Estado_Socioeconomico          500 non-null    object 
+ 4   Presencia_Tutorias             500 non-null    int64  
+dtypes: float64(2), int64(2), object(1)
+memory usage: 19.7+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Análisis Exploratorio Detallado</span>
+
+<span class="c1">## Visualizaciones para entender mejor la distribución de los datos</span>
+
+<span class="c1"># Histogramas para variables numéricas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Horas de Estudio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Calificacion_Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Calificación Promedio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Gráficos de barras para variables categóricas</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Participación en Actividades Extracurriculares&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Estado_Socioeconomico&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución del Estado Socioeconómico&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Análisis de Correlaciones</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mapa de Calor de Correlaciones&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9bd639c2a4fcf87aded17e902b8e7b5c62772d1395cf03b2d0bcce1ee39161df.png" src="../_images/9bd639c2a4fcf87aded17e902b8e7b5c62772d1395cf03b2d0bcce1ee39161df.png" />
+<img alt="../_images/433e914e2d763e8181c5d79c9301d169ba2edce27db76b77e6620ade3b4ddd08.png" src="../_images/433e914e2d763e8181c5d79c9301d169ba2edce27db76b77e6620ade3b4ddd08.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-8-02cb9eb3ea10&gt;:33: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  correlation_matrix = df.corr()
+</pre></div>
+</div>
+<img alt="../_images/2c8f0d9737dd53c3148a6efe76c3f7b306f5abe24ded814d12186a3cf8d9dd3a.png" src="../_images/2c8f0d9737dd53c3148a6efe76c3f7b306f5abe24ded814d12186a3cf8d9dd3a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mostrar nuevamente el par plot con ajustes para evitar advertencias</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Estado_Socioeconomico&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3e3461e9d830fc45bdb19255f5efb0c818543a61cc0069be8e9dced85841a7bb.png" src="../_images/3e3461e9d830fc45bdb19255f5efb0c818543a61cc0069be8e9dced85841a7bb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2_contingency</span>
+
+<span class="c1"># Cálculo de la correlación entre &#39;Actividades_Extracurriculares&#39; y &#39;Estado_Socioeconomico&#39;</span>
+<span class="n">contingency_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Estado_Socioeconomico&#39;</span><span class="p">])</span>
+<span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">contingency_table</span><span class="p">)</span>
+<span class="n">coefficient_of_contingency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">chi2</span> <span class="o">/</span> <span class="p">(</span><span class="n">chi2</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># Cálculo de la correlación entre &#39;Actividades_Extracurriculares&#39; y &#39;Presencia_Tutorias&#39;</span>
+<span class="n">contingency_table_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Presencia_Tutorias&#39;</span><span class="p">])</span>
+<span class="n">chi2_2</span><span class="p">,</span> <span class="n">p_2</span><span class="p">,</span> <span class="n">dof_2</span><span class="p">,</span> <span class="n">expected_2</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">contingency_table_2</span><span class="p">)</span>
+<span class="n">coefficient_of_contingency_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">chi2_2</span> <span class="o">/</span> <span class="p">(</span><span class="n">chi2_2</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="n">coefficient_of_contingency</span><span class="p">,</span> <span class="n">coefficient_of_contingency_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.03619533182963037, 0.01708721466154155)
+</pre></div>
+</div>
+</div>
+</div>
+<p>En cuanto a las medidas de correlación para las variables categóricas:</p>
+<p>La correlación entre Actividades Extracurriculares y Estado Socioeconómico tiene un coeficiente de contingencia de aproximadamente 0.0362, lo que sugiere una relación muy débil entre estas dos variables.
+La correlación entre Actividades Extracurriculares y Presencia de Tutorías tiene un coeficiente de contingencia de aproximadamente 0.0171, lo que sugiere una relación aún más débil.</p>
+</section>
+<section id="parte-ii-regresion-lineal-multiple-30-minutos">
+<h1>Parte II: Regresión Lineal Múltiple (30 minutos)<a class="headerlink" href="#parte-ii-regresion-lineal-multiple-30-minutos" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Construcción de Modelo</strong>: Construya un modelo de regresión lineal múltiple. Seleccione las variables basándose en criterios estadísticos y justifique su elección.</p></li>
+<li><p><strong>Interpretación y Diagnóstico</strong>: Interprete los coeficientes y realice un diagnóstico completo de los residuos.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># Selección de variables</span>
+<span class="c1"># Vamos a utilizar &#39;Horas_Estudio&#39;, &#39;Actividades_Extracurriculares&#39; y &#39;Presencia_Tutorias&#39; como predictores</span>
+<span class="c1"># &#39;Estado_Socioeconomico&#39; también es un factor importante, así que lo incluiremos después de codificarlo como variables dummy</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">,</span> <span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">,</span> <span class="s1">&#39;Presencia_Tutorias&#39;</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">,</span> <span class="s1">&#39;Presencia_Tutorias&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Calificacion_Promedio&#39;</span><span class="p">]</span>
+
+<span class="c1"># Construcción del modelo con statsmodels para obtener un resumen detallado</span>
+<span class="n">X_sm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># Añadir una constante al modelo</span>
+<span class="n">model_sm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X_sm</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Interpretación de coeficientes</span>
+<span class="n">model_sm_summary</span> <span class="o">=</span> <span class="n">model_sm</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model_sm_summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              OLS Regression Results                             
+=================================================================================
+Dep. Variable:     Calificacion_Promedio   R-squared:                       0.001
+Model:                               OLS   Adj. R-squared:                 -0.005
+Method:                    Least Squares   F-statistic:                    0.1551
+Date:                   Fri, 24 Nov 2023   Prob (F-statistic):              0.926
+Time:                           16:24:43   Log-Likelihood:                -2014.9
+No. Observations:                    500   AIC:                             4038.
+Df Residuals:                        496   BIC:                             4055.
+Df Model:                              3                                         
+Covariance Type:               nonrobust                                         
+===================================================================================================
+                                      coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------
+const                              74.7867      1.618     46.209      0.000      71.607      77.967
+Horas_Estudio                      -0.1728      0.266     -0.650      0.516      -0.695       0.350
+Actividades_Extracurriculares_1     0.1554      1.235      0.126      0.900      -2.272       2.583
+Presencia_Tutorias_1               -0.2637      1.336     -0.197      0.844      -2.889       2.362
+==============================================================================
+Omnibus:                        3.765   Durbin-Watson:                   2.068
+Prob(Omnibus):                  0.152   Jarque-Bera (JB):                3.684
+Skew:                          -0.210   Prob(JB):                        0.158
+Kurtosis:                       3.017   Cond. No.                         16.5
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>El modelo de regresión lineal múltiple se ajustó utilizando ‘Horas de Estudio’, ‘Actividades Extracurriculares’ y ‘Presencia de Tutorías’ como variables independientes y la ‘Calificación Promedio’ como variable dependiente. Las variables categóricas se codificaron en variables dummy.</p>
+<p>Interpretación de Coeficientes:</p>
+<ul class="simple">
+<li><p>const: El coeficiente para la constante es 74.7867, lo que indica que el valor base de la ‘Calificación Promedio’ es alrededor de 74.79 cuando todas las otras variables son cero.</p></li>
+<li><p>Horas_Estudio: Cada hora adicional de estudio se asocia con una disminución de 0.1728 en la ‘Calificación Promedio’. Sin embargo, este efecto no es estadísticamente significativo (p &gt; 0.05).</p></li>
+<li><p>Actividades_Extracurriculares_1: Participar en actividades extracurriculares se asocia con un aumento de 0.1554 en la ‘Calificación Promedio’, pero este coeficiente tampoco es estadísticamente significativo (p &gt; 0.05).</p></li>
+<li><p>Presencia_Tutorias_1: La presencia de tutorías se asocia con una disminución de 0.2637 en la ‘Calificación Promedio’, pero al igual que las otras variables, no es estadísticamente significativa (p &gt; 0.05).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Diagnóstico de Residuos con statsmodels</span>
+<span class="n">sm_residuals</span> <span class="o">=</span> <span class="n">model_sm</span><span class="o">.</span><span class="n">resid</span>
+
+<span class="c1"># Histograma de los residuos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">sm_residuals</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Residuos del Modelo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Residuos&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Gráfico Q-Q para evaluar la normalidad de los residuos</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">sm_residuals</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gráfico Q-Q de los Residuos del Modelo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Scatter plot de los residuos para evaluar la homocedasticidad</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">model_sm</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sm_residuals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residuos vs Valores Ajustados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valores Ajustados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuos&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e12495816d39d6885cd0c7bd2411d6d46698526a17ffd6c57822e48a06305f98.png" src="../_images/e12495816d39d6885cd0c7bd2411d6d46698526a17ffd6c57822e48a06305f98.png" />
+<img alt="../_images/4d3154f73179f6d2081c0dc3d04dae30efce4897b0cc81d9e957bc8dc3ca5e64.png" src="../_images/4d3154f73179f6d2081c0dc3d04dae30efce4897b0cc81d9e957bc8dc3ca5e64.png" />
+<img alt="../_images/6ec697fc9b6b053d037d074ef5cc6540f35eb48140288dcdc469ab006afc044c.png" src="../_images/6ec697fc9b6b053d037d074ef5cc6540f35eb48140288dcdc469ab006afc044c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Asegurarse de que las variables categóricas estén en el formato correcto</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Presencia_Tutorias&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Presencia_Tutorias&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="c1"># Crear gráficos de residuos vs. cada variable independiente nuevamente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Residuos vs. Horas_Estudio</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Horas_Estudio&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">sm_residuals</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuos vs. Horas de Estudio&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Horas de Estudio&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuos&#39;</span><span class="p">)</span>
+
+<span class="c1"># Residuos vs. Actividades_Extracurriculares</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Actividades_Extracurriculares&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sm_residuals</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuos vs. Actividades Extracurriculares&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Actividades Extracurriculares (Codificado)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuos&#39;</span><span class="p">)</span>
+
+<span class="c1"># Residuos vs. Presencia_Tutorias</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Presencia_Tutorias&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sm_residuals</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuos vs. Presencia de Tutorías&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Presencia de Tutorías (Codificado)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuos&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/29e135f074d4ff159af80e92901c41764bde662b6fcb37a458163c5362fa1567.png" src="../_images/29e135f074d4ff159af80e92901c41764bde662b6fcb37a458163c5362fa1567.png" />
+</div>
+</div>
+<p><strong>Diagnóstico de Residuos:</strong></p>
+<ul class="simple">
+<li><p>La distribución de los residuos parece ser aproximadamente normal, como se muestra en el histograma y el gráfico Q-Q, aunque podría haber ligeras desviaciones de la normalidad.</p></li>
+<li><p>El gráfico de dispersión de residuos vs. valores ajustados no muestra patrones claros, lo que es bueno, ya que sugiere homocedasticidad (varianza constante de los residuos).</p></li>
+</ul>
+<p><strong>Conclusión:</strong></p>
+<p>El modelo tiene un R-cuadrado muy bajo de 0.001, lo que indica que las variables incluidas explican menos del 1% de la variabilidad en las calificaciones promedio. Esto sugiere que el modelo no es adecuado para predecir la ‘Calificación Promedio’ y que otras variables no incluidas en el modelo pueden ser responsables de la mayoría de la variabilidad en las calificaciones.</p>
+<p>En términos de los resultados del diagnóstico, el modelo no muestra problemas significativos de normalidad o homocedasticidad de los residuos, pero esto podría deberse a la falta de ajuste del modelo. Sería recomendable explorar otras variables o interacciones que puedan mejorar la capacidad predictiva del modelo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Test estadísticos para análisis de residuos</span>
+<span class="c1"># Test de normalidad de los residuos (Jarque-Bera)</span>
+<span class="n">jb_test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">jarque_bera</span><span class="p">(</span><span class="n">model_sm</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
+<span class="c1"># Test de homocedasticidad (Breusch-Pagan)</span>
+<span class="n">bp_test</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">het_breuschpagan</span><span class="p">(</span><span class="n">model_sm</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">model_sm</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">exog</span><span class="p">)</span>
+
+<span class="c1"># Devolvemos los resultados de las pruebas estadísticas</span>
+<span class="p">(</span><span class="n">jb_test</span><span class="p">,</span> <span class="n">bp_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((3.684249569929403,
+  0.1584803314814158,
+  -0.21008358087940793,
+  3.0174222712684777),
+ (5.4767924801256695,
+  0.14003329198678993,
+  1.8310492671422767,
+  0.1405378908097699))
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tests Estadísticos:</strong>
+Test de Normalidad (Jarque-Bera):</p>
+<ul class="simple">
+<li><p>Estadístico JB: 3.6842</p></li>
+<li><p>p-valor: 0.1585</p></li>
+<li><p>Coeficiente de asimetría (Skewness): -0.2101</p></li>
+<li><p>Curtosis: 3.0174</p></li>
+</ul>
+<p>El p-valor es mayor que 0.05, lo que indica que no rechazamos la hipótesis nula de normalidad de los residuos. Esto sugiere que los residuos pueden considerarse normalmente distribuidos.</p>
+<p>Test de Homocedasticidad (Breusch-Pagan):</p>
+<ul class="simple">
+<li><p>Estadístico LM: 5.4768</p></li>
+<li><p>p-valor: 0.1400</p></li>
+<li><p>f-valor: 1.8310</p></li>
+<li><p>p-valor para el f-valor: 0.1405</p></li>
+</ul>
+<p>Con un p-valor mayor que 0.05, no hay suficientes pruebas para rechazar la hipótesis nula de homocedasticidad, lo que sugiere que los residuos tienen varianzas constantes.</p>
+</section>
+<section id="parte-iii-regresion-regularizada-30-minutos">
+<h1>Parte III: Regresión Regularizada (30 minutos)<a class="headerlink" href="#parte-iii-regresion-regularizada-30-minutos" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Construcción de Modelo</strong>: Aplique la regresión de Lasso y Ridge usando la base de datos fetch_california_housing. Realice la clusterización de las observaciones usando las variables latitud y longitud; seleccione las variables basándose en criterios estadísticos y justifique su elección.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">RidgeCV</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+
+<span class="c1"># Cargar el conjunto de datos de viviendas de California</span>
+<span class="n">california_housing</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+
+<span class="c1"># Crear un DataFrame con los datos para facilitar la manipulación</span>
+<span class="n">df_housing</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">california_housing</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">california_housing</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df_housing</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">california_housing</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">df_housing</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-914628d6-3c7b-4080-bd8d-1c932b038083" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MedInc</th>
+      <th>HouseAge</th>
+      <th>AveRooms</th>
+      <th>AveBedrms</th>
+      <th>Population</th>
+      <th>AveOccup</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8.3252</td>
+      <td>41.0</td>
+      <td>6.984127</td>
+      <td>1.023810</td>
+      <td>322.0</td>
+      <td>2.555556</td>
+      <td>37.88</td>
+      <td>-122.23</td>
+      <td>4.526</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8.3014</td>
+      <td>21.0</td>
+      <td>6.238137</td>
+      <td>0.971880</td>
+      <td>2401.0</td>
+      <td>2.109842</td>
+      <td>37.86</td>
+      <td>-122.22</td>
+      <td>3.585</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.2574</td>
+      <td>52.0</td>
+      <td>8.288136</td>
+      <td>1.073446</td>
+      <td>496.0</td>
+      <td>2.802260</td>
+      <td>37.85</td>
+      <td>-122.24</td>
+      <td>3.521</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.6431</td>
+      <td>52.0</td>
+      <td>5.817352</td>
+      <td>1.073059</td>
+      <td>558.0</td>
+      <td>2.547945</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>3.413</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.8462</td>
+      <td>52.0</td>
+      <td>6.281853</td>
+      <td>1.081081</td>
+      <td>565.0</td>
+      <td>2.181467</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>3.422</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-914628d6-3c7b-4080-bd8d-1c932b038083')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-914628d6-3c7b-4080-bd8d-1c932b038083 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-914628d6-3c7b-4080-bd8d-1c932b038083');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-5f1ee2e3-e2b9-49ac-9612-e08c5e2ad9fd">
+  <button class="colab-df-quickchart" onclick="quickchart('df-5f1ee2e3-e2b9-49ac-9612-e08c5e2ad9fd')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-5f1ee2e3-e2b9-49ac-9612-e08c5e2ad9fd button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clusterización de los datos de latitud y longitud</span>
+<span class="n">X_geo</span> <span class="o">=</span> <span class="n">df_housing</span><span class="p">[[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Encontrar el número óptimo de clústeres usando el método del codo y la puntuación de silueta</span>
+<span class="n">silhouette_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_geo</span><span class="p">)</span>
+    <span class="n">silhouette_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_geo</span><span class="p">,</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">))</span>
+
+<span class="c1"># El número óptimo de clústeres es aquel con la puntuación de silueta más alta</span>
+<span class="n">optimal_clusters</span> <span class="o">=</span> <span class="n">silhouette_scores</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">silhouette_scores</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">optimal_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">df_housing</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">optimal_clusters</span><span class="p">,</span> <span class="n">silhouette_score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2,
+ &lt;function sklearn.metrics.cluster._unsupervised.silhouette_score(X, labels, *, metric=&#39;euclidean&#39;, sample_size=None, random_state=None, **kwds)&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_housing</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-a3f1abff-df3f-4fbe-9cd3-1addae02c262" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MedInc</th>
+      <th>HouseAge</th>
+      <th>AveRooms</th>
+      <th>AveBedrms</th>
+      <th>Population</th>
+      <th>AveOccup</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Target</th>
+      <th>Cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8.3252</td>
+      <td>41.0</td>
+      <td>6.984127</td>
+      <td>1.023810</td>
+      <td>322.0</td>
+      <td>2.555556</td>
+      <td>37.88</td>
+      <td>-122.23</td>
+      <td>4.526</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8.3014</td>
+      <td>21.0</td>
+      <td>6.238137</td>
+      <td>0.971880</td>
+      <td>2401.0</td>
+      <td>2.109842</td>
+      <td>37.86</td>
+      <td>-122.22</td>
+      <td>3.585</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.2574</td>
+      <td>52.0</td>
+      <td>8.288136</td>
+      <td>1.073446</td>
+      <td>496.0</td>
+      <td>2.802260</td>
+      <td>37.85</td>
+      <td>-122.24</td>
+      <td>3.521</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.6431</td>
+      <td>52.0</td>
+      <td>5.817352</td>
+      <td>1.073059</td>
+      <td>558.0</td>
+      <td>2.547945</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>3.413</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.8462</td>
+      <td>52.0</td>
+      <td>6.281853</td>
+      <td>1.081081</td>
+      <td>565.0</td>
+      <td>2.181467</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>3.422</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a3f1abff-df3f-4fbe-9cd3-1addae02c262')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-a3f1abff-df3f-4fbe-9cd3-1addae02c262 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-a3f1abff-df3f-4fbe-9cd3-1addae02c262');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-6d90d7bb-86cf-415d-b32b-7cc31e3385ad">
+  <button class="colab-df-quickchart" onclick="quickchart('df-6d90d7bb-86cf-415d-b32b-7cc31e3385ad')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-6d90d7bb-86cf-415d-b32b-7cc31e3385ad button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_housing</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   MedInc      20640 non-null  float64
+ 1   HouseAge    20640 non-null  float64
+ 2   AveRooms    20640 non-null  float64
+ 3   AveBedrms   20640 non-null  float64
+ 4   Population  20640 non-null  float64
+ 5   AveOccup    20640 non-null  float64
+ 6   Latitude    20640 non-null  float64
+ 7   Longitude   20640 non-null  float64
+ 8   Target      20640 non-null  float64
+ 9   Cluster     20640 non-null  int32  
+dtypes: float64(9), int32(1)
+memory usage: 1.5 MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_housing</span><span class="p">[</span><span class="s1">&#39;Target&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_housing</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Target&#39;</span><span class="p">,</span> <span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mantenemos la columna &#39;cluster&#39;</span>
+
+<span class="c1"># Definir las transformaciones para las columnas numéricas y categóricas</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># Excluimos &#39;cluster&#39; para escalar solo columnas numéricas</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span>  <span class="c1"># La columna &#39;cluster&#39; es tratada como categórica</span>
+
+
+<span class="c1"># Crear el transformador de columnas con estandarización y codificación one-hot</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">categorical_features</span><span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">RidgeCV</span>
+
+<span class="c1"># Definimos el pipeline para el modelo de Lasso con el preprocesamiento y el clasificador</span>
+<span class="n">lasso_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))])</span>
+
+<span class="c1"># Definimos el pipeline para el modelo de Ridge con el preprocesamiento y el clasificador</span>
+<span class="n">ridge_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">))])</span>
+
+
+
+<span class="c1"># Dividir en conjuntos de entrenamiento y prueba</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+
+<span class="c1"># Entrenamos el modelo de Lasso con el pipeline</span>
+<span class="n">lasso_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Entrenamos el modelo de Ridge con el pipeline</span>
+<span class="n">ridge_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Evaluamos los modelos</span>
+<span class="n">lasso_score_train</span> <span class="o">=</span> <span class="n">lasso_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">ridge_score_train</span> <span class="o">=</span> <span class="n">ridge_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">lasso_score_test</span> <span class="o">=</span> <span class="n">lasso_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">ridge_score_test</span> <span class="o">=</span> <span class="n">ridge_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># Obtenemos los parámetros alpha seleccionados para cada modelo</span>
+<span class="n">lasso_alpha</span> <span class="o">=</span> <span class="n">lasso_pipeline</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">alpha_</span>
+<span class="n">ridge_alpha</span> <span class="o">=</span> <span class="n">ridge_pipeline</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">alpha_</span>
+
+<span class="p">(</span><span class="n">lasso_alpha</span><span class="p">,</span> <span class="n">lasso_score_train</span><span class="p">,</span> <span class="n">lasso_score_test</span><span class="p">,</span> <span class="n">ridge_alpha</span><span class="p">,</span> <span class="n">ridge_score_train</span><span class="p">,</span> <span class="n">ridge_score_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.001,
+ 0.5463362583549802,
+ 0.5119432916629332,
+ 10.0,
+ 0.5463644839566937,
+ 0.5113462039516893)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parte-iv-regresion-logistica-30-minutos">
+<h1>Parte IV: Regresión Logística (30 minutos)<a class="headerlink" href="#parte-iv-regresion-logistica-30-minutos" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Modelo de Regresión Logística</strong>: Convierta la la variable objetivo en una categorica en una variable binaria y aplique la regresión logística.</p></li>
+<li><p><strong>Análisis de Resultados</strong>: Interprete los coeficientes y evalúe el rendimiento del modelo utilizando la matriz de confusión y otras métricas relevantes.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># Cargar el conjunto de datos de viviendas de California</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># Convertir el precio de la casa en una variable categórica basada en la mediana</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_categorical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">median_price</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dividir en conjuntos de entrenamiento y prueba</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_categorical</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Estandarización de las variables independientes</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">X_train_scaled_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">X_test_scaled_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+
+
+<span class="c1"># Añadir la constante al DataFrame para el intercepto</span>
+<span class="n">X_train_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_train_scaled_df</span><span class="p">)</span>
+<span class="n">X_test_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_test_scaled_df</span><span class="p">)</span>
+
+<span class="c1"># Ajustar el modelo de regresión logística</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train_with_const</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Mostrar el resumen con los nombres de las variables</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.386487
+         Iterations 8
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                      y   No. Observations:                16512
+Model:                          Logit   Df Residuals:                    16503
+Method:                           MLE   Df Model:                            8
+Date:                Fri, 24 Nov 2023   Pseudo R-squ.:                  0.4424
+Time:                        16:50:45   Log-Likelihood:                -6381.7
+converged:                       True   LL-Null:                       -11445.
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0389      0.025      1.580      0.114      -0.009       0.087
+MedInc         2.5946      0.058     44.936      0.000       2.481       2.708
+HouseAge       0.2681      0.025     10.592      0.000       0.218       0.318
+AveRooms      -0.8605      0.070    -12.297      0.000      -0.998      -0.723
+AveBedrms      0.9657      0.064     15.016      0.000       0.840       1.092
+Population     0.0604      0.023      2.650      0.008       0.016       0.105
+AveOccup      -2.7945      0.285     -9.800      0.000      -3.353      -2.236
+Latitude      -3.6519      0.097    -37.717      0.000      -3.842      -3.462
+Longitude     -3.4471      0.090    -38.132      0.000      -3.624      -3.270
+==============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="log-likelihood-ll">
+<h1>Log-Likelihood (LL):<a class="headerlink" href="#log-likelihood-ll" title="Permalink to this heading">#</a></h1>
+<p>En el contexto de la regresión logística, el LL se utiliza para evaluar la calidad del modelo: cuanto más cercano esté el valor a cero (o menos negativo), mejor se ajusta el modelo a los datos.</p>
+<p>En los modelos de regresión, donde se asumen distribuciones de probabilidad para los errores, la función de verosimilitud mide la probabilidad de observar los datos dados los parámetros estimados del modelo. Un valor de LL más alto (menos negativo) significa que el modelo tiene una mayor probabilidad de observar los datos dados.</p>
+<p>En este modelo, el LL es -6381.7, lo que nos dice es que aun hay variabilidad sin explicar por parte del modelo.</p>
+</section>
+<section id="ll-null">
+<h1>LL-Null:<a class="headerlink" href="#ll-null" title="Permalink to this heading">#</a></h1>
+<p>El LL-Null es el logaritmo de likelihood para un modelo que solo incluye el intercepto (es decir, un modelo sin variables predictoras). Se utiliza como punto de referencia para comparar si tu modelo es mejor que un modelo sin predictores.</p>
+</section>
+<section id="likelihood-ratio-test-llr-y-su-p-valor">
+<h1>Likelihood Ratio Test (LLR) y su p-valor:<a class="headerlink" href="#likelihood-ratio-test-llr-y-su-p-valor" title="Permalink to this heading">#</a></h1>
+<p>El LLR compara la log-likelihood de tu modelo contra el LL-Null. Un p-valor asociado bajo (aquí es 0.000) indica que tu modelo es estadísticamente significativamente mejor que el modelo nulo.</p>
+</section>
+<section id="pseudo-r-squared">
+<h1>Pseudo R-squared:<a class="headerlink" href="#pseudo-r-squared" title="Permalink to this heading">#</a></h1>
+<p>El Pseudo R-squared proporciona una idea de la variabilidad explicada por el modelo. Es una analogía al R-squared en la regresión lineal, pero interpretado con precaución ya que no es equivalente al R-squared en términos de proporción de varianza explicada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OR_MedInc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">2.5946</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OR_MedInc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.391229798047386
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretacion-de-los-coeficientes-log-odds">
+<h1>Interpretación de los Coeficientes (log Odds):<a class="headerlink" href="#interpretacion-de-los-coeficientes-log-odds" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p><strong>MedInc</strong>: Un coeficiente de 2.5946 significa que, manteniendo todas las demás variables constantes, por cada aumento de una unidad en el ingreso medio (MedInc), el logaritmo de odds de que el precio de la vivienda sea alto (vs. bajo) aumenta en 2.5946.</p></li>
+</ul>
+</section>
+<section id="odds-ratios-or">
+<h1>Odds Ratios (OR):<a class="headerlink" href="#odds-ratios-or" title="Permalink to this heading">#</a></h1>
+<p>Los Odds Ratios se pueden calcular exponenciando los coeficientes de la regresión logística. Un OR mayor que 1 indica que el evento es más probable con cada incremento de unidad en la variable predictora.</p>
+<p>Por ejemplo, para MedInc:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OR_MedInc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">2.5946</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esto te dará el cambio en las odds de que el precio de la vivienda sea alto con cada aumento de unidad en el ingreso medio. El valor de 13.391229798047386, indica un cambio en las chances de 13 veces por cada aumento en una unidad en la media del ingreso de la zona donde esta ubicada la vivienda.</p>
+<p>Si un Odds Ratio (OR) es menor que 1, indica que el incremento en una unidad de la variable predictora está asociado con una disminución en las odds de que ocurra el evento de interés. En términos de la regresión logística, un OR menor que 1 sugiere una relación negativa entre la variable predictora y la probabilidad del evento.</p>
+<p>Por ejemplo, si el OR para una variable es 0.8, esto sugiere que, manteniendo todas las demás variables constantes, cada incremento de una unidad en esa variable reduce las odds del evento en un 20% (ya que 1 - 0.8 = 0.2).</p>
+</section>
+<section id="efectos-marginales">
+<h1>Efectos Marginales:<a class="headerlink" href="#efectos-marginales" title="Permalink to this heading">#</a></h1>
+<p>Los efectos marginales muestran cómo cambia la probabilidad predicha en promedio cuando una variable independiente cambia en una unidad, manteniendo el resto de variables en su media o en un valor fijo. Para calcular los efectos marginales en <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, puedes utilizar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfx</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mfx</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Logit Marginal Effects       
+=====================================
+Dep. Variable:                      y
+Method:                          dydx
+At:                           overall
+==============================================================================
+                dy/dx    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+MedInc         0.3228      0.005     60.779      0.000       0.312       0.333
+HouseAge       0.0334      0.003     10.730      0.000       0.027       0.039
+AveRooms      -0.1071      0.009    -12.504      0.000      -0.124      -0.090
+AveBedrms      0.1201      0.008     15.398      0.000       0.105       0.135
+Population     0.0075      0.003      2.652      0.008       0.002       0.013
+AveOccup      -0.3477      0.035     -9.930      0.000      -0.416      -0.279
+Latitude      -0.4543      0.010    -45.458      0.000      -0.474      -0.435
+Longitude     -0.4289      0.009    -46.288      0.000      -0.447      -0.411
+==============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lo anterior indica los cambios de probabilidad para cada variable predictora. Recuerda que vamos a expresarlos en puntos basicos.</p>
+<p>Recuerda:</p>
+<ul class="simple">
+<li><p>1% son 100 puntos basicos</p></li>
+<li><p>10% son 1000 puntos basicos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predecir las etiquetas de clase en el conjunto de prueba y calcular las probabilidades</span>
+<span class="n">X_test_sm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_sm</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Evaluar el modelo</span>
+<span class="n">conf_matrix</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">class_report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_sm</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">conf_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Classification Report:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">class_report</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">ROC AUC Score:&#39;</span><span class="p">,</span> <span class="n">roc_auc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
+ [[1719  358]
+ [ 359 1692]]
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.83      0.83      0.83      2077
+           1       0.83      0.82      0.83      2051
+
+    accuracy                           0.83      4128
+   macro avg       0.83      0.83      0.83      4128
+weighted avg       0.83      0.83      0.83      4128
+
+
+ROC AUC Score: 0.9086953837471864
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí está cómo interpretar cada parte:</p>
+</section>
+<section id="matriz-de-confusion">
+<h1>Matriz de Confusión:<a class="headerlink" href="#matriz-de-confusion" title="Permalink to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1719</span>  <span class="mi">358</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mi">359</span> <span class="mi">1692</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>La matriz de confusión muestra las clasificaciones correctas e incorrectas del modelo:</p>
+<ul class="simple">
+<li><p><strong>Verdaderos negativos (TN)</strong>: 1719 - El modelo predijo correctamente la clase negativa en 1719 casos.</p></li>
+<li><p><strong>Falsos positivos (FP)</strong>: 358 - El modelo predijo incorrectamente la clase positiva en 358 casos cuando en realidad era negativa.</p></li>
+<li><p><strong>Falsos negativos (FN)</strong>: 359 - El modelo predijo incorrectamente la clase negativa en 359 casos cuando en realidad era positiva.</p></li>
+<li><p><strong>Verdaderos positivos (TP)</strong>: 1692 - El modelo predijo correctamente la clase positiva en 1692 casos.</p></li>
+</ul>
+</section>
+<section id="informe-de-clasificacion">
+<h1>Informe de Clasificación:<a class="headerlink" href="#informe-de-clasificacion" title="Permalink to this heading">#</a></h1>
+<p>Este informe incluye varias métricas para cada clase (0 y 1), así como promedios:</p>
+<ul class="simple">
+<li><p><strong>Precisión</strong>: La proporción de predicciones correctas sobre el total de predicciones para esa clase. Tanto para la clase 0 como para la 1, la precisión es 0.83.</p></li>
+<li><p><strong>Recall (Sensibilidad)</strong>: La proporción de verdaderos positivos identificados correctamente por el modelo. Para la clase 0 es 0.83 y para la clase 1 es 0.82.</p></li>
+<li><p><strong>F1-score</strong>: El promedio armónico de precisión y recall. Un F1-score alto indica un buen equilibrio entre precisión y recall. Aquí, el F1-score es 0.83 para ambas clases.</p></li>
+<li><p><strong>Support</strong>: El número de ocurrencias reales de la clase en el conjunto de datos especificado. Para la clase 0 son 2077 y para la clase 1 son 2051.</p></li>
+</ul>
+<p>Las métricas “macro avg”, “weighted avg” y “accuracy” proporcionan promedios de las métricas anteriores:</p>
+<ul class="simple">
+<li><p><strong>Macro avg</strong>: Calcula la media no ponderada de las métricas por clase.</p></li>
+<li><p><strong>Weighted avg</strong>: Calcula la media ponderada por el soporte de cada clase.</p></li>
+<li><p><strong>Accuracy</strong>: La proporción de todas las predicciones correctas sobre el total de casos. Aquí, la precisión general es 0.83.</p></li>
+</ul>
+</section>
+<section id="roc-auc-score-0-908695387471864">
+<h1>ROC AUC Score: 0.908695387471864<a class="headerlink" href="#roc-auc-score-0-908695387471864" title="Permalink to this heading">#</a></h1>
+<p>El área bajo la curva (AUC) del receptor operativo característico (ROC) es una medida de la capacidad del modelo para clasificar correctamente las clases. Un AUC de 1 indica un modelo perfecto, mientras que un AUC de 0.5 indica un rendimiento no mejor que el azar.</p>
+<ul class="simple">
+<li><p>En este caso, el AUC es 0.91, lo que sugiere un muy buen rendimiento del modelo en la discriminación entre las clases positiva y negativa.</p></li>
+</ul>
+<section id="parte-v-regresion-logistica-regularizada-15-minutos">
+<h2>Parte V: Regresión Logística Regularizada (15 minutos)<a class="headerlink" href="#parte-v-regresion-logistica-regularizada-15-minutos" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Regularización en Regresión Logística</strong>: Implemente regularización L1 y L2 en el modelo de regresión logística. Discuta las diferencias y elija el mejor modelo.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegressionCV</span>
+<span class="c1"># Dividir los datos en conjuntos de entrenamiento y prueba</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_categorical</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Estandarizar las variables independientes</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Definir y ajustar el modelo de regresión logística regularizado con Lasso (L1)</span>
+<span class="n">lasso_log_reg_cv</span> <span class="o">=</span> <span class="n">LogisticRegressionCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">lasso_log_reg_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Definir y ajustar el modelo de regresión logística regularizado con Ridge (L2)</span>
+<span class="n">ridge_log_reg_cv</span> <span class="o">=</span> <span class="n">LogisticRegressionCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">ridge_log_reg_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Evaluar los modelos</span>
+<span class="n">y_pred_lasso</span> <span class="o">=</span> <span class="n">lasso_log_reg_cv</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+<span class="n">y_pred_ridge</span> <span class="o">=</span> <span class="n">ridge_log_reg_cv</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Lasso Logistic Regression&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_lasso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_lasso</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ROC AUC:&#39;</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lasso_log_reg_cv</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lasso Logistic Regression
+[[1719  358]
+ [ 359 1692]]
+              precision    recall  f1-score   support
+
+           0       0.83      0.83      0.83      2077
+           1       0.83      0.82      0.83      2051
+
+    accuracy                           0.83      4128
+   macro avg       0.83      0.83      0.83      4128
+weighted avg       0.83      0.83      0.83      4128
+
+ROC AUC: 0.9086906888310528
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ridge Logistic Regression&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_ridge</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_ridge</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ROC AUC:&#39;</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">ridge_log_reg_cv</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ridge Logistic Regression
+[[1719  358]
+ [ 359 1692]]
+              precision    recall  f1-score   support
+
+           0       0.83      0.83      0.83      2077
+           1       0.83      0.82      0.83      2051
+
+    accuracy                           0.83      4128
+   macro avg       0.83      0.83      0.83      4128
+weighted avg       0.83      0.83      0.83      4128
+
+ROC AUC: 0.9086758998452321
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtén los nombres de las características del DataFrame original</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># Coeficientes del modelo Lasso</span>
+<span class="n">lasso_coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lasso_log_reg_cv</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Lasso Coefficients&#39;</span><span class="p">])</span>
+
+<span class="c1"># Coeficientes del modelo Ridge</span>
+<span class="n">ridge_coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ridge_log_reg_cv</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Ridge Coefficients&#39;</span><span class="p">])</span>
+
+<span class="c1"># Muestra los coeficientes de Lasso y Ridge con los nombres de las variables asociados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lasso Coefficients:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">lasso_coefs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ridge Coefficients:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ridge_coefs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lasso Coefficients:
+             Lasso Coefficients
+MedInc                2.594717
+HouseAge              0.268211
+AveRooms             -0.861124
+AveBedrms             0.966088
+Population            0.060375
+AveOccup             -2.794102
+Latitude             -3.649341
+Longitude            -3.444859
+
+Ridge Coefficients:
+             Ridge Coefficients
+MedInc                2.593873
+HouseAge              0.267994
+AveRooms             -0.859993
+AveBedrms             0.965178
+Population            0.060243
+AveOccup             -2.784536
+Latitude             -3.650713
+Longitude            -3.446123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para Lasso</span>
+<span class="n">optimal_C_lasso</span> <span class="o">=</span> <span class="n">lasso_log_reg_cv</span><span class="o">.</span><span class="n">C_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># C_ es un array, obtenemos el primer elemento</span>
+<span class="n">optimal_lambda_lasso</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">optimal_C_lasso</span>
+
+<span class="c1"># Para Ridge</span>
+<span class="n">optimal_C_ridge</span> <span class="o">=</span> <span class="n">ridge_log_reg_cv</span><span class="o">.</span><span class="n">C_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># C_ es un array, obtenemos el primer elemento</span>
+<span class="n">optimal_lambda_ridge</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">optimal_C_ridge</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El valor óptimo de C para Lasso es: </span><span class="si">{</span><span class="n">optimal_C_lasso</span><span class="si">}</span><span class="s2">, lo que corresponde a un lambda de: </span><span class="si">{</span><span class="n">optimal_lambda_lasso</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El valor óptimo de C para Ridge es: </span><span class="si">{</span><span class="n">optimal_C_ridge</span><span class="si">}</span><span class="s2">, lo que corresponde a un lambda de: </span><span class="si">{</span><span class="n">optimal_lambda_ridge</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El valor óptimo de C para Lasso es: 166.81005372000558, lo que corresponde a un lambda de: 0.005994842503189421
+El valor óptimo de C para Ridge es: 21.54434690031882, lo que corresponde a un lambda de: 0.04641588833612782
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parte-vi-estudio-de-caso-aplicado-30-minutos">
+<h2>Parte VI: Estudio de Caso Aplicado (30 minutos)<a class="headerlink" href="#parte-vi-estudio-de-caso-aplicado-30-minutos" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Usted y sus amigos estan interesado en generar una aplicación para celular de bajo costo que ayude a los usuarios a saber el precio de venta de las casa que se ofrecen en el mercado sin tener que usar intermediarios. Utilice los modelos desarrollados para decidir que factores pueden ser clave en su desarrollo.</p></li>
+<li><p>Reflexione sobre las limitaciones de los modelos generados y proponga procedimientos que pueden mejorar el rendimiento. Integre las mejoras propuestas y analice los nuevos resultados para responder la pregunta anterior.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Pre Parcial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Parte I: Análisis Exploratorio de Datos (45 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-ii-regresion-lineal-multiple-30-minutos">Parte II: Regresión Lineal Múltiple (30 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-iii-regresion-regularizada-30-minutos">Parte III: Regresión Regularizada (30 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-iv-regresion-logistica-30-minutos">Parte IV: Regresión Logística (30 minutos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood-ll">Log-Likelihood (LL):</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ll-null">LL-Null:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio-test-llr-y-su-p-valor">Likelihood Ratio Test (LLR) y su p-valor:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-r-squared">Pseudo R-squared:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-coeficientes-log-odds">Interpretación de los Coeficientes (log Odds):</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#odds-ratios-or">Odds Ratios (OR):</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-marginales">Efectos Marginales:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-confusion">Matriz de Confusión:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#informe-de-clasificacion">Informe de Clasificación:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-auc-score-0-908695387471864">ROC AUC Score: 0.908695387471864</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-v-regresion-logistica-regularizada-15-minutos">Parte V: Regresión Logística Regularizada (15 minutos)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-vi-estudio-de-caso-aplicado-30-minutos">Parte VI: Estudio de Caso Aplicado (30 minutos)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alejandra Tabares
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

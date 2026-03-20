@@ -1,0 +1,1571 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; MEL 202302</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Week_11/11-4-Ejemplo_Inference_logistic_regresion';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../Syllabus.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEL 202302</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../Syllabus.html">
+                    Syllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-1-Introduction_pensamiento_stat.html">Lectura 1-1: Introducción al Pensamiento estadístico</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-2-Estad%C3%ADstica_descriptiva.html">Lectura 1-2:  Estadística Descriptiva</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_1/1-3-Visualizations.html">Lectura 1-3: Visualización de datos con Python</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_2/2-0-Schedule_week_2.html">Semana 2. Probabilidad y distribuciones Probabilidad y Distribuciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_2/2-1-Prob.html">Lectura 2-1: Probabilidad y estadística</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-1-Inference.html">Lectura 3-1: Inferencia estadística</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-2-Hypothesis.html">Lectura 3-2: Pruebas de Hipotesis</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_3/3-3-Hypothesis_2.html">Lectura 3-3: Pruebas de Hipotesis 2.</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-1%20Correlaciones.html">Lectura 4-1: Correlaciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-2-Simple_linear_regression.html">Lectura 4-2: Regresión lineal simple</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_4/4-3-SLR_supuestos.html">Lectura 4-3: Supuestos de la regresión lineal simple</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_5/5-2-Hypothesis_Confidence.html">Lectura 5-1: Inferencia en RLS</a></li>
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_7/7-1-Multiple_linear_regresion.html">Lectura 7-1: Regresión Lineal Múltiple</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_7/7-2-Categorical_variables.html">Lectura 7-2: Predictores categóricos e interacciones</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-1-diagnostics.html">Lectura 8-1: Diagnóstico de modelos</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-2-transformations.html">Lectura 8-2: Transformaciones</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../Week_8/8-3-collinearity.html">Lectura 8-3: Colinealidad</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pre Parcial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Pre%20Parcial/Pre_parcial.html">Parte I: Análisis Exploratorio de Datos (45 minutos)</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_11/11-4-Ejemplo_Inference_logistic_regresion.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_11/11-4-Ejemplo_Inference_logistic_regresion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Week_11/11-4-Ejemplo_Inference_logistic_regresion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Reading the database</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/My Drive/CURSOS LOS ANDES/CURSO MODELOS DE ANÁLISIS ESTADÍSTICO/Modelos de Análisis Estadístico material previo y libro guía/Modelos de Análisis Estadístico/datos_desercion.dta&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 9916 entries, 0 to 9915
+Data columns (total 5 columns):
+ #   Column       Non-Null Count  Dtype   
+---  ------       --------------  -----   
+ 0   deserta      9916 non-null   int8    
+ 1   promInicial  9916 non-null   float32 
+ 2   proced       9916 non-null   object  
+ 3   carrera      9916 non-null   object  
+ 4   Genero       9916 non-null   category
+dtypes: category(1), float32(1), int8(1), object(2)
+memory usage: 290.6+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       1
+1       0
+2       0
+3       1
+4       0
+       ..
+9911    0
+9912    0
+9913    0
+9914    1
+9915    0
+Name: deserta, Length: 9916, dtype: int8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Variable Declaration</span>
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Converting variables to appropriate types</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;proced&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;proced&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;carrera&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;carrera&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Genero&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Genero&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Estimating a logistic regression model</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+
+<span class="c1"># Now define your formula and fit the model</span>
+<span class="n">model_formula</span> <span class="o">=</span> <span class="s1">&#39;deserta ~ promInicial + proced + carrera + Genero&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">model_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span><span class="c1"># Extracting log-odds for &#39;promInicial&#39;</span>
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.330042
+         Iterations 8
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9910
+Method:                           MLE   Df Model:                            5
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3975
+Time:                        14:48:26   Log-Likelihood:                -3272.7
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+=========================================================================================
+                            coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                14.9414      0.403     37.042      0.000      14.151      15.732
+proced[T.OTROS]           0.2120      0.068      3.116      0.002       0.079       0.345
+carrera[T.Economia]       0.4340      0.173      2.515      0.012       0.096       0.772
+carrera[T.Ingenieria]     1.0882      0.140      7.776      0.000       0.814       1.362
+Genero[T.M]               0.5341      0.069      7.726      0.000       0.399       0.670
+promInicial              -4.9031      0.111    -44.204      0.000      -5.120      -4.686
+=========================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="c1"># Get the coefficient for &#39;promInicial&#39;</span>
+<span class="n">log_odds_promInicial</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">]</span>
+
+<span class="c1"># Calculate log-odds, odds, and probability changes for the first two observations</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>  <span class="c1"># Looping through the first two observations</span>
+    <span class="c1"># Select the observation as a DataFrame and reset the index</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Calculate log-odds for the observation</span>
+    <span class="n">log_odds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">obs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Calculate odds</span>
+    <span class="n">odds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_odds</span><span class="p">)</span>
+
+    <span class="c1"># Change in odds with one unit increase in &#39;promInicial&#39;</span>
+    <span class="n">change_in_odds</span> <span class="o">=</span> <span class="n">odds</span> <span class="o">*</span> <span class="n">log_odds_promInicial</span>
+
+    <span class="c1"># Probability for the observation</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">obs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Change in probability with one unit increase in &#39;promInicial&#39;</span>
+    <span class="n">change_in_prob</span> <span class="o">=</span> <span class="n">prob</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob</span><span class="p">)</span> <span class="o">*</span> <span class="n">log_odds_promInicial</span>
+
+    <span class="c1"># Print the results</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Observation </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Log-Odds: </span><span class="si">{</span><span class="n">log_odds</span><span class="si">}</span><span class="s2">, Odds: </span><span class="si">{</span><span class="n">odds</span><span class="si">}</span><span class="s2">, Change in Odds: </span><span class="si">{</span><span class="n">change_in_odds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Probability: </span><span class="si">{</span><span class="n">prob</span><span class="si">}</span><span class="s2">, Change in Probability: </span><span class="si">{</span><span class="n">change_in_prob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Odds-ratio</span>
+<span class="n">odds_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_odds_promInicial</span><span class="p">)</span>
+
+<span class="c1"># Displaying results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Odds-ratio for promInicial: </span><span class="si">{</span><span class="n">odds_ratio</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observation 1:
+  Log-Odds: 0.5236093274988833, Odds: 1.688109607635245, Change in Odds: -8.276964808230778
+  Probability: 0.5236093274988833, Change in Probability: -1.223041211115814
+Observation 2:
+  Log-Odds: 0.08650775621096611, Odds: 1.0903598247458117, Change in Odds: -5.34613976302882
+  Probability: 0.08650775621096611, Change in Probability: -0.3874631269026249
+Odds-ratio for promInicial: 0.007423558193487546
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to get the mode (most common category) of a column</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getmode</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Calculate the average case for marginal effects</span>
+<span class="n">x_prom</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;promInicial&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span>
+    <span class="s1">&#39;proced&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">getmode</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;proced&#39;</span><span class="p">])],</span>
+    <span class="s1">&#39;carrera&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">getmode</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;carrera&#39;</span><span class="p">])],</span>
+    <span class="s1">&#39;Genero&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">getmode</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Genero&#39;</span><span class="p">])]</span>
+<span class="p">})</span>
+
+<span class="c1"># Marginal effects for the average case</span>
+<span class="n">avg_case_margeff</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">atexog</span><span class="o">=</span><span class="n">x_prom</span><span class="p">)</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Marginal Effects for the Average Case:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avg_case_margeff</span><span class="p">)</span>
+
+<span class="c1"># Calculate the marginal effects across all data</span>
+<span class="n">marg_eff</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_margeff</span><span class="p">()</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Average Marginal Effects:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">marg_eff</span><span class="p">)</span>
+
+<span class="c1"># Calculate and display the average marginal effect of &#39;promInicial&#39;</span>
+<span class="n">avg_marginal_effect_promInicial</span> <span class="o">=</span> <span class="n">marg_eff</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">,</span> <span class="s1">&#39;dy/dx&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Average Marginal Effect of &#39;promInicial&#39;: </span><span class="si">{</span><span class="n">avg_marginal_effect_promInicial</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Marginal Effects for the Average Case:
+                          dy/dx  Std. Err.          z      Pr(&gt;|z|)  \
+proced[T.OTROS]        0.021178   0.006806   3.111569  1.860958e-03   
+carrera[T.Economia]    0.043364   0.017190   2.522608  1.164883e-02   
+carrera[T.Ingenieria]  0.108729   0.013800   7.878730  3.307252e-15   
+Genero[T.M]            0.053363   0.006944   7.684774  1.532674e-14   
+promInicial           -0.489917   0.012249 -39.995746  0.000000e+00   
+
+                       Conf. Int. Low  Cont. Int. Hi.  
+proced[T.OTROS]              0.007838        0.034518  
+carrera[T.Economia]          0.009672        0.077056  
+carrera[T.Ingenieria]        0.081681        0.135777  
+Genero[T.M]                  0.039753        0.066972  
+promInicial                 -0.513925       -0.465909  
+
+Average Marginal Effects:
+                          dy/dx  Std. Err.          z      Pr(&gt;|z|)  \
+proced[T.OTROS]        0.021960   0.007035   3.121384  1.800032e-03   
+carrera[T.Economia]    0.044965   0.017862   2.517321  1.182512e-02   
+carrera[T.Ingenieria]  0.112744   0.014350   7.856729  3.942959e-15   
+Genero[T.M]            0.055333   0.007078   7.817610  5.383558e-15   
+promInicial           -0.508006   0.005892 -86.214906  0.000000e+00   
+
+                       Conf. Int. Low  Cont. Int. Hi.  
+proced[T.OTROS]              0.008171        0.035749  
+carrera[T.Economia]          0.009956        0.079975  
+carrera[T.Ingenieria]        0.084618        0.140869  
+Genero[T.M]                  0.041460        0.069205  
+promInicial                 -0.519555       -0.496458  
+
+Average Marginal Effect of &#39;promInicial&#39;: -0.5080063289783272
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="c1"># Fitting a logistic regression model with an interaction term</span>
+<span class="n">model_inter_formula</span> <span class="o">=</span> <span class="s1">&#39;deserta ~ promInicial + proced + carrera + Genero + promInicial:Genero&#39;</span>
+<span class="n">model_inter</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">model_inter_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_inter</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Calculating odds ratios for specific observations</span>
+<span class="c1"># For the interaction, we&#39;ll calculate it for different levels of &#39;Genero&#39;</span>
+<span class="c1"># Replace &#39;Genero1&#39; with the actual name of your dummy variable for &#39;Genero&#39;</span>
+
+<span class="c1"># Odds-ratio for observation with &#39;Genero&#39; at its baseline level</span>
+<span class="n">odds_ratio_women</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model_inter</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">])</span> <span class="o">*</span> \
+                   <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model_inter</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;promInicial:Genero[T.YourCategory]&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Odds-ratio for women (baseline level of Genero): </span><span class="si">{</span><span class="n">odds_ratio_women</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Odds-ratio for observation with &#39;Genero&#39; at its other level</span>
+<span class="c1"># This assumes &#39;Genero&#39; is binary; adjust as needed for your data</span>
+<span class="n">odds_ratio_men</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model_inter</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">])</span> <span class="o">*</span> \
+                 <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model_inter</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;promInicial:Genero[T.YourCategory]&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Odds-ratio for men (other level of Genero): </span><span class="si">{</span><span class="n">odds_ratio_men</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.329492
+         Iterations 8
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9909
+Method:                           MLE   Df Model:                            6
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3985
+Time:                        14:48:27   Log-Likelihood:                -3267.2
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+===========================================================================================
+                              coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------
+Intercept                  17.1323      0.810     21.148      0.000      15.545      18.720
+proced[T.OTROS]             0.2140      0.068      3.147      0.002       0.081       0.347
+carrera[T.Economia]         0.4332      0.173      2.504      0.012       0.094       0.772
+carrera[T.Ingenieria]       1.0838      0.141      7.708      0.000       0.808       1.359
+Genero[T.M]                -2.4073      0.915     -2.631      0.009      -4.201      -0.614
+promInicial                -5.5359      0.232    -23.869      0.000      -5.990      -5.081
+promInicial:Genero[T.M]     0.8489      0.264      3.220      0.001       0.332       1.366
+===========================================================================================
+Odds-ratio for women (baseline level of Genero): 0.00394258673102075
+Odds-ratio for men (other level of Genero): 0.00394258673102075
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Assuming &#39;data&#39; is already defined</span>
+
+<span class="c1"># Fitting a reduced logistic regression model</span>
+<span class="n">model_reduced_formula</span> <span class="o">=</span> <span class="s1">&#39;deserta ~ Genero + carrera + promInicial&#39;</span>
+<span class="n">model_reduced</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">model_reduced_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_reduced</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Calculating Odds-Ratios with Confidence Intervals</span>
+<span class="n">params_reduced</span> <span class="o">=</span> <span class="n">model_reduced</span><span class="o">.</span><span class="n">params</span>
+<span class="n">conf_reduced</span> <span class="o">=</span> <span class="n">model_reduced</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span>
+<span class="n">conf_reduced</span><span class="p">[</span><span class="s1">&#39;OR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params_reduced</span>
+<span class="n">conf_reduced</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2.5%&#39;</span><span class="p">,</span> <span class="s1">&#39;97.5%&#39;</span><span class="p">,</span> <span class="s1">&#39;OR&#39;</span><span class="p">]</span>
+<span class="n">odds_ratios_reduced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">conf_reduced</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Odds Ratios with Confidence Intervals (Reduced Model):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds_ratios_reduced</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.330529
+         Iterations 8
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9911
+Method:                           MLE   Df Model:                            4
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3966
+Time:                        14:48:27   Log-Likelihood:                -3277.5
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+=========================================================================================
+                            coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                14.9868      0.403     37.193      0.000      14.197      15.777
+Genero[T.M]               0.5425      0.069      7.856      0.000       0.407       0.678
+carrera[T.Economia]       0.4431      0.172      2.572      0.010       0.105       0.781
+carrera[T.Ingenieria]     1.0895      0.140      7.803      0.000       0.816       1.363
+promInicial              -4.9003      0.111    -44.231      0.000      -5.117      -4.683
+=========================================================================================
+
+Odds Ratios with Confidence Intervals (Reduced Model):
+                               2.5%         97.5%            OR
+Intercept              1.464487e+06  7.106678e+06  3.226087e+06
+Genero[T.M]            1.502485e+00  1.969526e+00  1.720228e+00
+carrera[T.Economia]    1.111135e+00  2.183222e+00  1.557516e+00
+carrera[T.Ingenieria]  2.261099e+00  3.908660e+00  2.972855e+00
+promInicial            5.991253e-03  9.249655e-03  7.444261e-03
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Model Fit Measures</span>
+<span class="c1"># -----------------------------</span>
+
+<span class="c1"># Log-likelihood of the model</span>
+<span class="n">log_likelihood</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">llf</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Log-Likelihood: </span><span class="si">{</span><span class="n">log_likelihood</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Global significance test (Likelihood Ratio Test) for the full model</span>
+<span class="n">lr_test_full</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">llr_pvalue</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Likelihood Ratio Test p-value (Full Model): </span><span class="si">{</span><span class="n">lr_test_full</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># For individual significance tests, we can use the summary</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Individual Coefficient Significance:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Confidence intervals for coefficients</span>
+<span class="n">conf_int</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Confidence Intervals for Coefficients:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conf_int</span><span class="p">)</span>
+
+<span class="c1"># Calculating Odds-Ratios with Confidence Intervals</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span>
+<span class="n">conf</span><span class="p">[</span><span class="s1">&#39;OR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span>
+<span class="n">conf</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2.5%&#39;</span><span class="p">,</span> <span class="s1">&#39;97.5%&#39;</span><span class="p">,</span> <span class="s1">&#39;OR&#39;</span><span class="p">]</span>
+<span class="n">odds_ratios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Odds Ratios with Confidence Intervals:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds_ratios</span><span class="p">)</span>
+
+<span class="c1"># For reduced model (if applicable)</span>
+<span class="c1"># Replace &#39;model_reduced&#39; with your reduced model</span>
+<span class="k">if</span> <span class="s1">&#39;model_reduced&#39;</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">():</span>
+    <span class="n">conf_int_reduced</span> <span class="o">=</span> <span class="n">model_reduced</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span>
+    <span class="n">params_reduced</span> <span class="o">=</span> <span class="n">model_reduced</span><span class="o">.</span><span class="n">params</span>
+    <span class="n">conf_int_reduced</span><span class="p">[</span><span class="s1">&#39;OR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params_reduced</span>
+    <span class="n">conf_int_reduced</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2.5%&#39;</span><span class="p">,</span> <span class="s1">&#39;97.5%&#39;</span><span class="p">,</span> <span class="s1">&#39;OR&#39;</span><span class="p">]</span>
+    <span class="n">odds_ratios_reduced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">conf_int_reduced</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Odds Ratios with Confidence Intervals (Reduced Model):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">odds_ratios_reduced</span><span class="p">)</span>
+
+    <span class="c1"># Hypothesis testing for reduced model (if applicable)</span>
+    <span class="c1"># Replace hypothesis with your specific hypothesis</span>
+    <span class="c1"># Example: hypothesis = &#39;carreraEconomia = carreraIngenieria&#39;</span>
+    <span class="c1"># hypothesis_test = model_reduced.wald_test(hypothesis)</span>
+    <span class="c1"># print(f&quot;\nHypothesis Test Result (Reduced Model): {hypothesis_test}&quot;)</span>
+
+<span class="c1"># Note: In Python, Wald tests are typically used for hypothesis testing on coefficients.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-Likelihood: -3272.6948128874023
+Likelihood Ratio Test p-value (Full Model): 0.0
+
+Individual Coefficient Significance:
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9910
+Method:                           MLE   Df Model:                            5
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3975
+Time:                        14:48:27   Log-Likelihood:                -3272.7
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+=========================================================================================
+                            coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                14.9414      0.403     37.042      0.000      14.151      15.732
+proced[T.OTROS]           0.2120      0.068      3.116      0.002       0.079       0.345
+carrera[T.Economia]       0.4340      0.173      2.515      0.012       0.096       0.772
+carrera[T.Ingenieria]     1.0882      0.140      7.776      0.000       0.814       1.362
+Genero[T.M]               0.5341      0.069      7.726      0.000       0.399       0.670
+promInicial              -4.9031      0.111    -44.204      0.000      -5.120      -4.686
+=========================================================================================
+
+Confidence Intervals for Coefficients:
+                               0          1
+Intercept              14.150835  15.731985
+proced[T.OTROS]         0.078619   0.345283
+carrera[T.Economia]     0.095759   0.772220
+carrera[T.Ingenieria]   0.813898   1.362426
+Genero[T.M]             0.398570   0.669537
+promInicial            -5.120495  -4.685699
+
+Odds Ratios with Confidence Intervals:
+                               2.5%         97.5%            OR
+Intercept              1.398395e+06  6.796950e+06  3.082989e+06
+proced[T.OTROS]        1.081792e+00  1.412390e+00  1.236088e+00
+carrera[T.Economia]    1.100494e+00  2.164565e+00  1.543403e+00
+carrera[T.Ingenieria]  2.256687e+00  3.905658e+00  2.968813e+00
+Genero[T.M]            1.489692e+00  1.953332e+00  1.705832e+00
+promInicial            5.973066e-03  9.226285e-03  7.423558e-03
+
+Odds Ratios with Confidence Intervals (Reduced Model):
+                               2.5%         97.5%            OR
+Intercept              1.464487e+06  7.106678e+06  3.226087e+06
+Genero[T.M]            1.502485e+00  1.969526e+00  1.720228e+00
+carrera[T.Economia]    1.111135e+00  2.183222e+00  1.557516e+00
+carrera[T.Ingenieria]  2.261099e+00  3.908660e+00  2.972855e+00
+promInicial            5.991253e-03  9.249655e-03  7.444261e-03
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span>
+<span class="c1"># Comparación entre modelos</span>
+
+<span class="c1"># Fitting the complete model with interaction terms</span>
+<span class="n">model_complete_formula</span> <span class="o">=</span> <span class="s1">&#39;deserta ~ Genero * carrera * promInicial&#39;</span>
+<span class="n">model_complete</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">model_complete_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_complete</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Fitting the reduced model without interaction terms</span>
+<span class="n">model_reduced_formula</span> <span class="o">=</span> <span class="s1">&#39;deserta ~ Genero + carrera + promInicial&#39;</span>
+<span class="n">model_reduced</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">model_reduced_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_reduced</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="c1"># Comparing the two models using a likelihood ratio test</span>
+<span class="n">lr_stat</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">model_complete</span><span class="o">.</span><span class="n">llf</span> <span class="o">-</span> <span class="n">model_reduced</span><span class="o">.</span><span class="n">llf</span><span class="p">)</span>  <span class="c1"># LR statistic</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">model_complete</span><span class="o">.</span><span class="n">df_model</span> <span class="o">-</span> <span class="n">model_reduced</span><span class="o">.</span><span class="n">df_model</span>  <span class="c1"># Degrees of freedom</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">lr_stat</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>  <span class="c1"># P-value</span>
+
+<span class="c1"># Calculating McFadden&#39;s Pseudo R-squared</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pseudo_r2</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">llf</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">llf</span>
+    <span class="n">llnull</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">llnull</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">llf</span> <span class="o">/</span> <span class="n">llnull</span><span class="p">)</span>
+
+<span class="n">pseudo_r2_complete</span> <span class="o">=</span> <span class="n">pseudo_r2</span><span class="p">(</span><span class="n">model_complete</span><span class="p">)</span>
+<span class="n">pseudo_r2_reduced</span> <span class="o">=</span> <span class="n">pseudo_r2</span><span class="p">(</span><span class="n">model_reduced</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">McFadden&#39;s Pseudo R-squared (Complete Model): </span><span class="si">{</span><span class="n">pseudo_r2_complete</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;McFadden&#39;s Pseudo R-squared (Reduced Model): </span><span class="si">{</span><span class="n">pseudo_r2_reduced</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.329624
+         Iterations 9
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9904
+Method:                           MLE   Df Model:                           11
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3983
+Time:                        14:48:27   Log-Likelihood:                -3268.6
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+=================================================================================================================
+                                                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------------
+Intercept                                        14.0824      2.263      6.224      0.000       9.648      18.517
+Genero[T.M]                                      -1.7976      2.838     -0.633      0.526      -7.360       3.765
+carrera[T.Economia]                               7.2213      3.963      1.822      0.068      -0.545      14.988
+carrera[T.Ingenieria]                             4.2540      2.431      1.750      0.080      -0.511       9.019
+Genero[T.M]:carrera[T.Economia]                  -2.4711      4.597     -0.538      0.591     -11.480       6.538
+Genero[T.M]:carrera[T.Ingenieria]                -0.6802      3.012     -0.226      0.821      -6.583       5.223
+promInicial                                      -4.6198      0.652     -7.086      0.000      -5.898      -3.342
+Genero[T.M]:promInicial                           0.6582      0.820      0.803      0.422      -0.948       2.265
+carrera[T.Economia]:promInicial                  -2.0333      1.156     -1.759      0.079      -4.299       0.233
+carrera[T.Ingenieria]:promInicial                -0.9316      0.701     -1.330      0.184      -2.305       0.442
+Genero[T.M]:carrera[T.Economia]:promInicial       0.8010      1.338      0.599      0.549      -1.821       3.423
+Genero[T.M]:carrera[T.Ingenieria]:promInicial     0.2097      0.870      0.241      0.809      -1.495       1.914
+=================================================================================================================
+Optimization terminated successfully.
+         Current function value: 0.330529
+         Iterations 8
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9911
+Method:                           MLE   Df Model:                            4
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3966
+Time:                        14:48:27   Log-Likelihood:                -3277.5
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+=========================================================================================
+                            coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                14.9868      0.403     37.193      0.000      14.197      15.777
+Genero[T.M]               0.5425      0.069      7.856      0.000       0.407       0.678
+carrera[T.Economia]       0.4431      0.172      2.572      0.010       0.105       0.781
+carrera[T.Ingenieria]     1.0895      0.140      7.803      0.000       0.816       1.363
+promInicial              -4.9003      0.111    -44.231      0.000      -5.117      -4.683
+=========================================================================================
+
+McFadden&#39;s Pseudo R-squared (Complete Model): 0.3983002980760678
+McFadden&#39;s Pseudo R-squared (Reduced Model): 0.39664930707680546
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Comparemos algunos modelos que pueden construirse con estos datos</span>
+
+
+<span class="c1"># Define and fit the models</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;deserta ~ carrera&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model1</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="n">lr_stat1</span> <span class="o">=</span> <span class="n">model1</span><span class="o">.</span><span class="n">llr</span>  <span class="c1"># Likelihood Ratio Statistic</span>
+<span class="n">p_value1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">lr_stat1</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">model1</span><span class="o">.</span><span class="n">df_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Likelihood Ratio Test (Model 1): LR Statistic = </span><span class="si">{</span><span class="n">lr_stat1</span><span class="si">}</span><span class="s2">, p-value = </span><span class="si">{</span><span class="n">p_value1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">model2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;deserta ~ Genero&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="n">lr_stat2</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">llr</span>
+<span class="n">p_value2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">lr_stat2</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">model2</span><span class="o">.</span><span class="n">df_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Likelihood Ratio Test (Model 2): LR Statistic = </span><span class="si">{</span><span class="n">lr_stat2</span><span class="si">}</span><span class="s2">, p-value = </span><span class="si">{</span><span class="n">p_value2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">model3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="s1">&#39;deserta ~ promInicial&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="n">lr_stat3</span> <span class="o">=</span> <span class="n">model3</span><span class="o">.</span><span class="n">llr</span>
+<span class="n">p_value3</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">lr_stat3</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">model3</span><span class="o">.</span><span class="n">df_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Likelihood Ratio Test (Model 3): LR Statistic = </span><span class="si">{</span><span class="n">lr_stat3</span><span class="si">}</span><span class="s2">, p-value = </span><span class="si">{</span><span class="n">p_value3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare models using AIC and BIC</span>
+<span class="n">aic_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">model1</span><span class="o">.</span><span class="n">aic</span><span class="p">,</span> <span class="n">model2</span><span class="o">.</span><span class="n">aic</span><span class="p">,</span> <span class="n">model3</span><span class="o">.</span><span class="n">aic</span><span class="p">]</span>
+<span class="n">bic_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">model1</span><span class="o">.</span><span class="n">bic</span><span class="p">,</span> <span class="n">model2</span><span class="o">.</span><span class="n">bic</span><span class="p">,</span> <span class="n">model3</span><span class="o">.</span><span class="n">bic</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">AIC Values: </span><span class="si">{</span><span class="n">aic_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BIC Values: </span><span class="si">{</span><span class="n">bic_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Determine the best model based on AIC and BIC</span>
+<span class="n">best_model_aic</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">aic_values</span><span class="p">)</span>
+<span class="n">best_model_bic</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bic_values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best model based on AIC: </span><span class="si">{</span><span class="s1">&#39;Model 1&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">best_model_aic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">aic_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Model 2&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">best_model_aic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">aic_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Model 3&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best model based on BIC: </span><span class="si">{</span><span class="s1">&#39;Model 1&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">best_model_bic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">bic_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Model 2&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">best_model_bic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">bic_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Model 3&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.535897
+         Iterations 6
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9913
+Method:                           MLE   Df Model:                            2
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                 0.02177
+Time:                        14:48:27   Log-Likelihood:                -5314.0
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                 4.414e-52
+=========================================================================================
+                            coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                -2.2405      0.109    -20.541      0.000      -2.454      -2.027
+carrera[T.Economia]       0.4313      0.138      3.119      0.002       0.160       0.702
+carrera[T.Ingenieria]     1.2398      0.112     11.067      0.000       1.020       1.459
+=========================================================================================
+Likelihood Ratio Test (Model 1): LR Statistic = 236.4991774169448, p-value = 4.4142419793909565e-52
+Optimization terminated successfully.
+         Current function value: 0.539475
+         Iterations 6
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9914
+Method:                           MLE   Df Model:                            1
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                 0.01524
+Time:                        14:48:27   Log-Likelihood:                -5349.4
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                 6.983e-38
+===============================================================================
+                  coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept      -1.6341      0.046    -35.373      0.000      -1.725      -1.544
+Genero[T.M]     0.6712      0.054     12.452      0.000       0.566       0.777
+===============================================================================
+Likelihood Ratio Test (Model 2): LR Statistic = 165.5367021491329, p-value = 6.983444718781584e-38
+Optimization terminated successfully.
+         Current function value: 0.339156
+         Iterations 7
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                deserta   No. Observations:                 9916
+Model:                          Logit   Df Residuals:                     9914
+Method:                           MLE   Df Model:                            1
+Date:                Fri, 17 Nov 2023   Pseudo R-squ.:                  0.3809
+Time:                        14:48:28   Log-Likelihood:                -3363.1
+converged:                       True   LL-Null:                       -5432.2
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+===============================================================================
+                  coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept      16.4594      0.382     43.071      0.000      15.710      17.208
+promInicial    -4.9403      0.110    -45.110      0.000      -5.155      -4.726
+===============================================================================
+Likelihood Ratio Test (Model 3): LR Statistic = 4138.2641306558835, p-value = 0.0
+
+AIC Values: [10633.907084473914, 10702.869559741726, 6730.142131234976]
+BIC Values: [10655.51279915338, 10717.273369528037, 6744.545941021286]
+Best model based on AIC: Model 3
+Best model based on BIC: Model 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1"># Function to plot ROC curve</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_roc_curve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="c1"># Get actual and predicted values</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span>
+    <span class="n">predicted_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Calculate ROC curve and AUC</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted_prob</span><span class="p">)</span>
+    <span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+
+    <span class="c1"># Plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;ROC curve (area = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ROC Curve for </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">roc_auc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate models</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">,</span> <span class="n">model3</span><span class="p">]</span>
+<span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Model 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Model 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Model 3&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="c1"># Confusion Matrix</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Confusion Matrix for </span><span class="si">{</span><span class="n">model_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="n">cm</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Plot ROC curve and calculate AUC</span>
+    <span class="n">auc_value</span> <span class="o">=</span> <span class="n">plot_roc_curve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">model_names</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;AUC for </span><span class="si">{</span><span class="n">model_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">auc_value</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix for Model 1:
+[[ 874 6690]
+ [  93 2259]]
+</pre></div>
+</div>
+<img alt="../_images/d43495a1c9fed14140146a19cfe976a785074f1553be88eabcaed7a2e141b0c1.png" src="../_images/d43495a1c9fed14140146a19cfe976a785074f1553be88eabcaed7a2e141b0c1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for Model 1: 0.5701413415048727
+
+Confusion Matrix for Model 2:
+[[   0 7564]
+ [   0 2352]]
+</pre></div>
+</div>
+<img alt="../_images/d194fd28f743f55779331fa2aae4640aa561303e4d6d2a93e23ebb3a0c4ba479.png" src="../_images/d194fd28f743f55779331fa2aae4640aa561303e4d6d2a93e23ebb3a0c4ba479.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for Model 2: 0.5706668177583037
+
+Confusion Matrix for Model 3:
+[[4635 2929]
+ [ 148 2204]]
+</pre></div>
+</div>
+<img alt="../_images/999c6ca5c529b139aed53be103172106749816d00ac4eb9803bfe7232f151008.png" src="../_images/999c6ca5c529b139aed53be103172106749816d00ac4eb9803bfe7232f151008.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for Model 3: 0.8935545926461541
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">precision_recall_curve</span><span class="p">,</span> <span class="n">f1_score</span>
+
+<span class="c1"># Function to find the optimal threshold for the highest F1 score</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_optimal_threshold</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span>
+    <span class="n">predicted_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Calculate ROC curve components</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds_roc</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted_prob</span><span class="p">)</span>
+    <span class="n">sensitivity</span> <span class="o">=</span> <span class="n">tpr</span>
+    <span class="n">specificity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">fpr</span>
+
+    <span class="c1"># Calculate Precision-Recall curve components</span>
+    <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">thresholds_pr</span> <span class="o">=</span> <span class="n">precision_recall_curve</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted_prob</span><span class="p">)</span>
+
+    <span class="c1"># Calculate F1 score for each threshold</span>
+    <span class="n">f1_scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">f1_score</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted_prob</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">thresholds_pr</span><span class="p">]</span>
+
+    <span class="c1"># Find the optimal threshold</span>
+    <span class="n">optimal_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">)</span>
+    <span class="n">optimal_threshold</span> <span class="o">=</span> <span class="n">thresholds_pr</span><span class="p">[</span><span class="n">optimal_idx</span><span class="p">]</span>
+    <span class="n">optimal_f1</span> <span class="o">=</span> <span class="n">f1_scores</span><span class="p">[</span><span class="n">optimal_idx</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">optimal_threshold</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">[</span><span class="n">optimal_idx</span><span class="p">],</span> <span class="n">specificity</span><span class="p">[</span><span class="n">optimal_idx</span><span class="p">],</span> <span class="n">precision</span><span class="p">[</span><span class="n">optimal_idx</span><span class="p">],</span> <span class="n">optimal_f1</span>
+
+<span class="c1"># Evaluate models</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">,</span> <span class="n">model3</span><span class="p">]</span>
+<span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Model 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Model 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Model 3&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="n">optimal_threshold</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">,</span> <span class="n">specificity</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">optimal_f1</span> <span class="o">=</span> <span class="n">find_optimal_threshold</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Optimal Threshold: </span><span class="si">{</span><span class="n">optimal_threshold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Sensitivity: </span><span class="si">{</span><span class="n">sensitivity</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Specificity: </span><span class="si">{</span><span class="n">specificity</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Precision: </span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Optimal F1 Score: </span><span class="si">{</span><span class="n">optimal_f1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model 1:
+  Optimal Threshold: 0.26880204996796747
+  Sensitivity: 0.9604591836734694
+  Specificity: 0.11554732945531465
+  Precision: 0.26880204996796925
+  Optimal F1 Score: 0.41311410849660335
+
+Model 2:
+  Optimal Threshold: 0.27628738822078297
+  Sensitivity: 0.7619047619047619
+  Specificity: 0.37942887361184563
+  Precision: 0.27628738822078325
+  Optimal F1 Score: 0.4055216112242589
+
+Model 3:
+  Optimal Threshold: 0.34662302675444334
+  Sensitivity: 0.9370748299319728
+  Specificity: 0.6127710206240085
+  Precision: 0.6496960486322189
+  Optimal F1 Score: 0.6861958266452649
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="c1"># Function to create a confusion matrix at a given threshold</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_confusion_matrix</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;deserta&#39;</span><span class="p">]</span>
+    <span class="n">predicted_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="p">(</span><span class="n">predicted_prob</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cm</span>
+
+<span class="c1"># Optimal thresholds from the previous step</span>
+<span class="n">optimal_thresholds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2047682</span><span class="p">,</span> <span class="mf">0.2197763</span><span class="p">,</span> <span class="mf">0.2311404</span><span class="p">]</span>
+
+<span class="c1"># Evaluate models</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">,</span> <span class="n">model3</span><span class="p">]</span>
+<span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Model 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Model 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Model 3&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">create_confusion_matrix</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">optimal_thresholds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Confusion Matrix for </span><span class="si">{</span><span class="n">model_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> (Threshold: </span><span class="si">{</span><span class="n">optimal_thresholds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">):&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix for Model 1 (Threshold: 0.2047682):
+[[1857 5707]
+ [ 254 2098]]
+
+Confusion Matrix for Model 2 (Threshold: 0.2197763):
+[[2870 4694]
+ [ 560 1792]]
+
+Confusion Matrix for Model 3 (Threshold: 0.2311404):
+[[6049 1515]
+ [ 385 1967]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a scatter plot of the predicted log odds against the continuous predictors</span>
+<span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">]:</span>  <span class="c1"># Replace with your continuous predictors</span>
+    <span class="n">fitted_vals</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+    <span class="n">log_odds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">fitted_vals</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">fitted_vals</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">variable</span><span class="p">],</span> <span class="n">log_odds</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log Odds&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Log Odds vs </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a17f6321462105dfb5163e361597e9dd4149dcd2e88b437cc8233c9fed573d8e.png" src="../_images/a17f6321462105dfb5163e361597e9dd4149dcd2e88b437cc8233c9fed573d8e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model using GLM</span>
+<span class="n">glm_formula</span> <span class="o">=</span> <span class="s1">&#39;deserta ~ promInicial + proced + carrera + Genero&#39;</span>
+<span class="n">glm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="n">glm_formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Deviance residuals</span>
+<span class="n">deviance_residuals</span> <span class="o">=</span> <span class="n">glm_model</span><span class="o">.</span><span class="n">resid_deviance</span>
+
+<span class="c1"># Plot the deviance residuals</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">deviance_residuals</span><span class="p">)),</span> <span class="n">deviance_residuals</span><span class="p">,</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Observation Number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Deviance Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Deviance Residuals Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-27-3a04b9faf8e9&gt;:9: MatplotlibDeprecationWarning: The &#39;use_line_collection&#39; parameter of stem() was deprecated in Matplotlib 3.6 and will be removed two minor releases later. If any parameter follows &#39;use_line_collection&#39;, they should be passed as keyword, not positionally.
+  plt.stem(np.arange(len(deviance_residuals)), deviance_residuals, use_line_collection=True)
+</pre></div>
+</div>
+<img alt="../_images/9854d8a885d1d22e7c12b369db837b3f1ca4ecf4a0f4449e5cbd10eb31d9fe44.png" src="../_images/9854d8a885d1d22e7c12b369db837b3f1ca4ecf4a0f4449e5cbd10eb31d9fe44.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cook&#39;s Distance</span>
+<span class="n">influence</span> <span class="o">=</span> <span class="n">glm_model</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span>
+<span class="n">cooks</span> <span class="o">=</span> <span class="n">influence</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Plot Cook&#39;s distance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cooks</span><span class="p">)),</span> <span class="n">cooks</span><span class="p">,</span> <span class="n">linefmt</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">markerfmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">basefmt</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Observation Number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cook&#39;s Distance&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cook&#39;s Distance Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7fd75f4a50a713327d5b81ab0f2fb23bafe1607722333eb0895f415b26769bd5.png" src="../_images/7fd75f4a50a713327d5b81ab0f2fb23bafe1607722333eb0895f415b26769bd5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking for linearity in the logit can be done by inspecting the partial regression plots</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">glm_model</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ce2bf5e1e25bb5220dd28a653577c41b8ada433ab07237bd053d8ea63f073143.png" src="../_images/ce2bf5e1e25bb5220dd28a653577c41b8ada433ab07237bd053d8ea63f073143.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate predicted log odds (logit transformation of predicted probabilities)</span>
+<span class="n">predicted_probs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">log_odds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">predicted_probs</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">predicted_probs</span><span class="p">))</span>
+
+<span class="c1"># Plot the continuous independent variable against the log odds</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;promInicial&#39;</span><span class="p">],</span> <span class="n">log_odds</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;promInicial&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Log Odds&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Log Odds vs promInicial&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a17f6321462105dfb5163e361597e9dd4149dcd2e88b437cc8233c9fed573d8e.png" src="../_images/a17f6321462105dfb5163e361597e9dd4149dcd2e88b437cc8233c9fed573d8e.png" />
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Week_11"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alejandra Tabares
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
