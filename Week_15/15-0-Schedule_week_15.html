@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Semana 15: Repaso Final — Sesión de Revisión Final &#8212; MEL 202302</title>
+    <title>Semana 15: Repaso Final — Sesión de Revisión Final &#8212; Modelos de Análisis Estadístico</title>
   
   
   
@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -107,8 +109,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -156,19 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">MEL 202302</p>
+    <p class="title logo__title">Modelos de Análisis Estadístico</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../Syllabus.html">
-                    Syllabus
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
@@ -368,84 +362,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_15/15-0-Schedule_week_15.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_15/15-0-Schedule_week_15.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -549,20 +465,20 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">Objetivo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-de-esta-semana">Temas de Esta Semana</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-de-esta-semana">Temas de Esta Semana</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-1-regresion-lineal-simple-rls-15-1-repaso-regresion-lineal-ipynb">Tema 1 — Regresión Lineal Simple (RLS) — <code class="docutils literal notranslate"><span class="pre">15-1-Repaso_regresion_lineal.ipynb</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-2-regresion-lineal-multiple-rlm-15-1-repaso-regresion-lineal-ipynb">Tema 2 — Regresión Lineal Múltiple (RLM) — <code class="docutils literal notranslate"><span class="pre">15-1-Repaso_regresion_lineal.ipynb</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-3-regresion-logistica-15-2-repaso-regresion-logistica-ipynb">Tema 3 — Regresión Logística — <code class="docutils literal notranslate"><span class="pre">15-2-Repaso_regresion_logistica.ipynb</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-4-regresion-de-poisson-y-glms-15-2-repaso-regresion-logistica-ipynb">Tema 4 — Regresión de Poisson y GLMs — <code class="docutils literal notranslate"><span class="pre">15-2-Repaso_regresion_logistica.ipynb</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-rapida-de-formulas-clave">Referencia Rápida de Fórmulas Clave</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-rapida-de-formulas-clave">Referencia Rápida de Fórmulas Clave</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-y-de-prediccion-rls">Intervalos de Confianza y de Predicción (RLS)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-informacion">Criterios de Información</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-regularizada">Regresión Regularizada</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estudio-lista-de-verificacion-por-tema">Guía de Estudio — Lista de Verificación por Tema</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estudio-lista-de-verificacion-por-tema">Guía de Estudio — Lista de Verificación por Tema</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal">Regresión Lineal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosticos-y-seleccion-de-modelos">Diagnósticos y Selección de Modelos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-logistica">Regresión Logística</a></li>
@@ -768,51 +684,51 @@ document.write(`
 <p>Use esta lista de verificación al prepararse para el examen. Marque cada ítem cuando se sienta seguro.</p>
 <section id="regresion-lineal">
 <h3>Regresión Lineal<a class="headerlink" href="#regresion-lineal" title="Permalink to this heading">#</a></h3>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Escribir los modelos RLS y RLM con todos los supuestos enunciados</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Derivar o explicar conceptualmente los estimadores MCO</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interpretar <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> en RLS y RLM</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Realizar e interpretar la prueba t y la prueba F de la tabla ANOVA</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Construir IC para <span class="math notranslate nohighlight">\(\beta_j\)</span>, IC para <span class="math notranslate nohighlight">\(E[Y|\mathbf{x}^*]\)</span>, IP para <span class="math notranslate nohighlight">\(Y^*\)</span></p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Identificar violaciones de los supuestos LINE a partir de gráficos de residuos</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Calcular e interpretar el VIF</p></li>
+<ul class="simple">
+<li><p>[ ] Escribir los modelos RLS y RLM con todos los supuestos enunciados</p></li>
+<li><p>[ ] Derivar o explicar conceptualmente los estimadores MCO</p></li>
+<li><p>[ ] Interpretar <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> en RLS y RLM</p></li>
+<li><p>[ ] Realizar e interpretar la prueba t y la prueba F de la tabla ANOVA</p></li>
+<li><p>[ ] Construir IC para <span class="math notranslate nohighlight">\(\beta_j\)</span>, IC para <span class="math notranslate nohighlight">\(E[Y|\mathbf{x}^*]\)</span>, IP para <span class="math notranslate nohighlight">\(Y^*\)</span></p></li>
+<li><p>[ ] Identificar violaciones de los supuestos LINE a partir de gráficos de residuos</p></li>
+<li><p>[ ] Calcular e interpretar el VIF</p></li>
 </ul>
 </section>
 <section id="diagnosticos-y-seleccion-de-modelos">
 <h3>Diagnósticos y Selección de Modelos<a class="headerlink" href="#diagnosticos-y-seleccion-de-modelos" title="Permalink to this heading">#</a></h3>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interpretar residuos vs ajustados, gráfico QQ, escala-ubicación, gráficos de apalancamiento</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Identificar valores atípicos vs puntos de alto apalancamiento vs puntos influyentes</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Comparar modelos usando AIC, BIC, <span class="math notranslate nohighlight">\(R^2\)</span> ajustado</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Explicar el dilema sesgo-varianza para Ridge vs Lasso</p></li>
+<ul class="simple">
+<li><p>[ ] Interpretar residuos vs ajustados, gráfico QQ, escala-ubicación, gráficos de apalancamiento</p></li>
+<li><p>[ ] Identificar valores atípicos vs puntos de alto apalancamiento vs puntos influyentes</p></li>
+<li><p>[ ] Comparar modelos usando AIC, BIC, <span class="math notranslate nohighlight">\(R^2\)</span> ajustado</p></li>
+<li><p>[ ] Explicar el dilema sesgo-varianza para Ridge vs Lasso</p></li>
 </ul>
 </section>
 <section id="regresion-logistica">
 <h3>Regresión Logística<a class="headerlink" href="#regresion-logistica" title="Permalink to this heading">#</a></h3>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Derivar la fórmula de probabilidad de la regresión logística a partir del enlace logit</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interpretar log-momios, razones de momios y probabilidades</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Evaluar el modelo con matriz de confusión: exactitud, sensibilidad, especificidad</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interpretar la curva ROC y el AUC</p></li>
+<ul class="simple">
+<li><p>[ ] Derivar la fórmula de probabilidad de la regresión logística a partir del enlace logit</p></li>
+<li><p>[ ] Interpretar log-momios, razones de momios y probabilidades</p></li>
+<li><p>[ ] Evaluar el modelo con matriz de confusión: exactitud, sensibilidad, especificidad</p></li>
+<li><p>[ ] Interpretar la curva ROC y el AUC</p></li>
 </ul>
 </section>
 <section id="regresion-de-poisson-y-glms">
 <h3>Regresión de Poisson y GLMs<a class="headerlink" href="#regresion-de-poisson-y-glms" title="Permalink to this heading">#</a></h3>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Enunciar las condiciones para la regresión de Poisson</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interpretar las razones de tasas (coeficientes exponenciados)</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Diagnosticar sobredispersión: devianza residual / gl <span class="math notranslate nohighlight">\(\gg 1\)</span></p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Identificar los tres componentes GLM para cualquier familia dada</p></li>
+<ul class="simple">
+<li><p>[ ] Enunciar las condiciones para la regresión de Poisson</p></li>
+<li><p>[ ] Interpretar las razones de tasas (coeficientes exponenciados)</p></li>
+<li><p>[ ] Diagnosticar sobredispersión: devianza residual / gl <span class="math notranslate nohighlight">\(\gg 1\)</span></p></li>
+<li><p>[ ] Identificar los tres componentes GLM para cualquier familia dada</p></li>
 </ul>
 </section>
 <section id="analisis-de-supervivencia-semana-14">
 <h3>Análisis de Supervivencia (Semana 14)<a class="headerlink" href="#analisis-de-supervivencia-semana-14" title="Permalink to this heading">#</a></h3>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Definir <span class="math notranslate nohighlight">\(S(t)\)</span>, <span class="math notranslate nohighlight">\(h(t)\)</span>, <span class="math notranslate nohighlight">\(H(t)\)</span> y enunciar sus relaciones</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Explicar la censura por la derecha y por qué no puede ignorarse</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Calcular un estimador simple de Kaplan-Meier a mano para un ejemplo pequeño</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Interpretar los coeficientes del Cox PH como razones de riesgo</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Enunciar el supuesto de riesgos proporcionales y describir cómo verificarlo</p></li>
+<ul class="simple">
+<li><p>[ ] Definir <span class="math notranslate nohighlight">\(S(t)\)</span>, <span class="math notranslate nohighlight">\(h(t)\)</span>, <span class="math notranslate nohighlight">\(H(t)\)</span> y enunciar sus relaciones</p></li>
+<li><p>[ ] Explicar la censura por la derecha y por qué no puede ignorarse</p></li>
+<li><p>[ ] Calcular un estimador simple de Kaplan-Meier a mano para un ejemplo pequeño</p></li>
+<li><p>[ ] Interpretar los coeficientes del Cox PH como razones de riesgo</p></li>
+<li><p>[ ] Enunciar el supuesto de riesgos proporcionales y describir cómo verificarlo</p></li>
 </ul>
 </section>
 </section>
@@ -919,20 +835,20 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo">Objetivo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-de-esta-semana">Temas de Esta Semana</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temas-de-esta-semana">Temas de Esta Semana</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-1-regresion-lineal-simple-rls-15-1-repaso-regresion-lineal-ipynb">Tema 1 — Regresión Lineal Simple (RLS) — <code class="docutils literal notranslate"><span class="pre">15-1-Repaso_regresion_lineal.ipynb</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-2-regresion-lineal-multiple-rlm-15-1-repaso-regresion-lineal-ipynb">Tema 2 — Regresión Lineal Múltiple (RLM) — <code class="docutils literal notranslate"><span class="pre">15-1-Repaso_regresion_lineal.ipynb</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-3-regresion-logistica-15-2-repaso-regresion-logistica-ipynb">Tema 3 — Regresión Logística — <code class="docutils literal notranslate"><span class="pre">15-2-Repaso_regresion_logistica.ipynb</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tema-4-regresion-de-poisson-y-glms-15-2-repaso-regresion-logistica-ipynb">Tema 4 — Regresión de Poisson y GLMs — <code class="docutils literal notranslate"><span class="pre">15-2-Repaso_regresion_logistica.ipynb</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-rapida-de-formulas-clave">Referencia Rápida de Fórmulas Clave</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia-rapida-de-formulas-clave">Referencia Rápida de Fórmulas Clave</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-y-de-prediccion-rls">Intervalos de Confianza y de Predicción (RLS)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-informacion">Criterios de Información</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-regularizada">Regresión Regularizada</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estudio-lista-de-verificacion-por-tema">Guía de Estudio — Lista de Verificación por Tema</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guia-de-estudio-lista-de-verificacion-por-tema">Guía de Estudio — Lista de Verificación por Tema</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal">Regresión Lineal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnosticos-y-seleccion-de-modelos">Diagnósticos y Selección de Modelos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-logistica">Regresión Logística</a></li>
@@ -956,7 +872,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Alejandra Tabares
+By Alejandra Tabares Pozos
 </p>
 
   </div>

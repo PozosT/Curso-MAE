@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Lectura 10-2: Modelos regularizados &#8212; MEL 202302</title>
+    <title>Lectura 10-2: Modelos regularizados &#8212; Modelos de Análisis Estadístico</title>
   
   
   
@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -107,8 +109,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -156,19 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">MEL 202302</p>
+    <p class="title logo__title">Modelos de Análisis Estadístico</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../Syllabus.html">
-                    Syllabus
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semana 1</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Week_1/1-0-Schedule_week_1.html">Semana 1. Introducción al análisis estadístico</a></li>
@@ -368,84 +362,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/PozosT/Curso-MAE/blob/main/Week_10/10-2-Regularizacion.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/PozosT/Curso-MAE/issues/new?title=Issue%20on%20page%20%2FWeek_10/10-2-Regularizacion.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -550,7 +466,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lectura 10-2: Modelos regularizados</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion-de-la-varianza-del-error">Descomposición de la varianza del error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-datos-entrenamiento-y-prueba">División de Datos: Entrenamiento y Prueba</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-datos-entrenamiento-y-prueba">División de Datos: Entrenamiento y Prueba</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-dividir-los-datos">¿Por Qué Dividir los Datos?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-dividir-los-datos">¿Cómo Dividir los Datos?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-una-alternativa-y-complemento">Validación Cruzada: Una Alternativa y Complemento</a></li>
@@ -560,7 +476,7 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#repaso-regresion-lineal">Repaso Regresión lineal</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucion-de-minimos-cuadrados-ordinarios">Resolución de mínimos cuadrados ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-descenso-de-gradiente">Gradient Descent (descenso de gradiente)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-descenso-de-gradiente">Gradient Descent (descenso de gradiente)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento">Funcionamiento</a></li>
 </ul>
 </li>
@@ -571,7 +487,7 @@ document.write(`
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-problemas-de-sesgo-y-varianza">Diagnóstico de Problemas de Sesgo y Varianza</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-de-aprendizaje">Curvas de aprendizaje</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-de-validacion">Curvas de validación</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-de-validacion">Curvas de validación</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-las-curvas-de-validacion">Interpretación de las Curvas de Validación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-en-el-uso-de-curvas-de-validacion">Buenas Prácticas en el Uso de Curvas de Validación</a></li>
 </ul>
@@ -601,7 +517,8 @@ document.write(`
 <h1>Lectura 10-2: Modelos regularizados<a class="headerlink" href="#lectura-10-2-modelos-regularizados" title="Permalink to this heading">#</a></h1>
 <section id="descomposicion-de-la-varianza-del-error">
 <h2>Descomposición de la varianza del error<a class="headerlink" href="#descomposicion-de-la-varianza-del-error" title="Permalink to this heading">#</a></h2>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/03_bias_variance.png" alt="ml" style="width: 40%"/><p>A menudo se utilizan los términos “sesgo” y “varianza” o “compensación entre sesgo y varianza” para describir el rendimiento de un modelo; por ejemplo, es posible que encuentre charlas, libros o artículos en los que se diga que un modelo tiene una varianza o un sesgo elevados. ¿Qué significa eso? En general, podríamos decir que una “alta varianza” es proporcional a un ajuste excesivo <strong>(overfitting)</strong>, y un “alto sesgo” es proporcional a un ajuste insuficiente <strong>(underfitting)</strong>.</p>
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/03_bias_variance.png" />
+<p>A menudo se utilizan los términos “sesgo” y “varianza” o “compensación entre sesgo y varianza” para describir el rendimiento de un modelo; por ejemplo, es posible que encuentre charlas, libros o artículos en los que se diga que un modelo tiene una varianza o un sesgo elevados. ¿Qué significa eso? En general, podríamos decir que una “alta varianza” es proporcional a un ajuste excesivo <strong>(overfitting)</strong>, y un “alto sesgo” es proporcional a un ajuste insuficiente <strong>(underfitting)</strong>.</p>
 <p>En cualquier caso, ¿por qué intentamos hacer esta descomposición sesgo-varianza? La descomposición de la pérdida en sesgo y varianza nos ayuda a entender los algoritmos de aprendizaje, ya que estos conceptos están correlacionados con la inadaptación y la sobreadaptación.</p>
 <p>Para utilizar los términos más formales de sesgo y varianza, supongamos que tenemos un estimador puntual <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> de algún parámetro o función <span class="math notranslate nohighlight">\(\theta\)</span>. Entonces, el sesgo se define comúnmente como la diferencia entre el valor esperado del estimador y el parámetro que queremos estimar:</p>
 <div class="math notranslate nohighlight">
@@ -728,7 +645,8 @@ E[2(y - E[{\hat{y}}])(E[{\hat{y}}] - \hat{y})]  &amp;= 2 E[(y - E[{\hat{y}}])(E[
 </ul>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}_{SSE} = \sum_{n=1}^{N} (y_n-\hat{y}_n)^2 = \sum_{n=1}^{N} (y_n-(\mathbf{\beta}\mathbf{x_n} + \beta_0))^2\]</div>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/02_least_squares.png" alt="ml" style="margin: 0 auto; width: 550px;"/><section id="resolucion-de-minimos-cuadrados-ordinarios">
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/02_least_squares.png" />
+<section id="resolucion-de-minimos-cuadrados-ordinarios">
 <h2>Resolución de mínimos cuadrados ordinarios<a class="headerlink" href="#resolucion-de-minimos-cuadrados-ordinarios" title="Permalink to this heading">#</a></h2>
 <ul>
 <li><p>Problema de optimización convexo con solución única de forma cerrada:</p>
@@ -904,7 +822,8 @@ E[2(y - E[{\hat{y}}])(E[{\hat{y}}] - \hat{y})]  &amp;= 2 E[(y - E[{\hat{y}}])(E[
 <li><p>Regla básica de actualización (paso s):
 $<span class="math notranslate nohighlight">\(\mathbf{w}^{s+1} = \mathbf{w}^s-\eta\nabla \mathcal{L}(\mathbf{w}^s)\)</span>$</p></li>
 </ul>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/01_gradient_descent.jpg" alt="ml" style="width: 500px;"/><ul class="simple">
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/01_gradient_descent.jpg" />
+<ul class="simple">
 <li><p>Hiperparámetros importantes</p>
 <ul>
 <li><p>Tasa de aprendizaje</p>
@@ -1056,7 +975,7 @@ Note: you may need to restart the kernel to use updated packages.
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "e21c502dc28a4567bcc6734e5413fb6a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>En dos dimensiones:</p>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/01_gradient_descent_2D.png" alt="ml" style="width: 700px;"/>
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/01_gradient_descent_2D.png" />
 <ul class="simple">
 <li><p>Puede quedarse atascado en mínimos locales (si la pérdida no es totalmente convexa).</p>
 <ul>
@@ -1165,7 +1084,7 @@ Note: you may need to restart the kernel to use updated packages.
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}v_i^s = \begin{cases}\nabla \mathcal{L_i}(\mathbf{w}^s) &amp; i = i_s \\ v_i^{s-1} &amp; \text{otherwise} \end{cases}\end{split}\]</div>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/08_SGD.png" alt="ml" style="float: left; width: 400px;"/>
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/08_SGD.png" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_path_sgd</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># extra code – we need to store the path of beta in the</span>
@@ -1577,7 +1496,8 @@ Note: you may need to restart the kernel to use updated packages.
 <section id="curvas-de-validacion">
 <h2>Curvas de validación<a class="headerlink" href="#curvas-de-validacion" title="Permalink to this heading">#</a></h2>
 <p>Las curvas de validación son gráficos que representan el rendimiento de un modelo en los conjuntos de entrenamiento y validación en función de diferentes valores de un hiperparámetro específico. Estas curvas ayudan a identificar la configuración óptima del hiperparámetro y a diagnosticar problemas de sobreajuste o subajuste.</p>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/03_Bias-Variance-Tradeoff.png" alt="ml" style="width: 40%"/><div class="cell docutils container">
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/03_Bias-Variance-Tradeoff.png" />
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -1643,7 +1563,8 @@ Note: you may need to restart the kernel to use updated packages.
 <li><p><strong>Visualización Clara:</strong> Asegúrese de que sus gráficos sean claros y fáciles de interpretar, etiquetando los ejes y proporcionando una leyenda cuando sea necesario.</p></li>
 </ul>
 <p>Diagrama de flujo resumido (por Andrew Ng)</p>
-<img src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/03_Bias-Variance-Flowchart.png" alt="ml" style="width: 50%"/></section>
+<img alt="ml" src="https://raw.githubusercontent.com/ML-course/master/master/notebooks/images/03_Bias-Variance-Flowchart.png" />
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="modelos-lineales-regularizados">
@@ -2621,7 +2542,7 @@ l1_ratio: 0.0
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lectura 10-2: Modelos regularizados</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion-de-la-varianza-del-error">Descomposición de la varianza del error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-datos-entrenamiento-y-prueba">División de Datos: Entrenamiento y Prueba</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-datos-entrenamiento-y-prueba">División de Datos: Entrenamiento y Prueba</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-dividir-los-datos">¿Por Qué Dividir los Datos?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-dividir-los-datos">¿Cómo Dividir los Datos?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-cruzada-una-alternativa-y-complemento">Validación Cruzada: Una Alternativa y Complemento</a></li>
@@ -2631,7 +2552,7 @@ l1_ratio: 0.0
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#repaso-regresion-lineal">Repaso Regresión lineal</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolucion-de-minimos-cuadrados-ordinarios">Resolución de mínimos cuadrados ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-descenso-de-gradiente">Gradient Descent (descenso de gradiente)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-descenso-de-gradiente">Gradient Descent (descenso de gradiente)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento">Funcionamiento</a></li>
 </ul>
 </li>
@@ -2642,7 +2563,7 @@ l1_ratio: 0.0
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-problemas-de-sesgo-y-varianza">Diagnóstico de Problemas de Sesgo y Varianza</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-de-aprendizaje">Curvas de aprendizaje</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-de-validacion">Curvas de validación</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curvas-de-validacion">Curvas de validación</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-las-curvas-de-validacion">Interpretación de las Curvas de Validación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-en-el-uso-de-curvas-de-validacion">Buenas Prácticas en el Uso de Curvas de Validación</a></li>
 </ul>
@@ -2671,7 +2592,7 @@ l1_ratio: 0.0
   <div class="footer-item">
     
 <p class="component-author">
-By Alejandra Tabares
+By Alejandra Tabares Pozos
 </p>
 
   </div>
