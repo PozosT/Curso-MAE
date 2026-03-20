@@ -47,7 +47,38 @@ parts:
 - caption: Semana 10
   chapters:
   - file: Week_10/10-0-Schedule_week_10
-  #- file: Week_10/10-1-Selection
+  - file: Week_10/10-1-Selection
+  - file: Week_10/10-2-Regularizacion
+  - file: Week_10/10-3-Crossvalidation
+  - file: Week_10/10-4-Ejemplo
+  - file: Week_10/10-5-Ejemplo seleccion
+- caption: Semana 11
+  chapters:
+  - file: Week_11/11-1-Schedule_week_11
+  - file: Week_11/11-2-logistic
+  - file: Week_11/11-3-Ejemplo_logit_statmodels
+  - file: Week_11/11-4-Ejemplo_Inference_logistic_regresion
+  - file: Week_11/11-5-Ejemplo_logistic_regularized
+- caption: Semana 12
+  chapters:
+  - file: Week_12/12-0-Schedule_week_12
+  - file: Week_12/12-1-Logistic_evaluation
+  - file: Week_12/12-2-Model_selection_logistic
+- caption: Semana 13
+  chapters:
+  - file: Week_13/13-0-Schedule_week_13
+  - file: Week_13/13-1-Poisson_regression
+  - file: Week_13/13-2-Ejemplo_Poisson
+- caption: Semana 14
+  chapters:
+  - file: Week_14/14-0-Schedule_week_14
+  - file: Week_14/14-1-GLM_overview
+  - file: Week_14/14-2-Survival_analysis
+- caption: Semana 15
+  chapters:
+  - file: Week_15/15-0-Schedule_week_15
+  - file: Week_15/15-1-Repaso_regresion_lineal
+  - file: Week_15/15-2-Repaso_regresion_logistica
 - caption: Pre Parcial
   chapters:
   - file: Pre Parcial/Pre_parcial
